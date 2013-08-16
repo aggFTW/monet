@@ -1,0 +1,37 @@
+<p>
+  <b>Usuario:</b>
+  <%= @user.username %>
+</p>
+
+<!-- 
+<p>
+  <b>Nombre:</b>
+  <%= @user.fname %>
+</p>
+ 
+<p>
+  <b>Apellidos:</b>
+  <%= @user.lname %>
+</p>
+-->
+ 
+<p>
+  <b>Tipo:</b>
+  <%
+            if @user.utype == 0
+              type = "Estudiante"
+            elsif @user.utype == 1
+              type = "Administrador"
+            else
+              type = "Error"
+            end
+        %>
+  <%= type %>
+</p>
+ 
+ 
+<%= link_to 'Editar', edit_user_path(@user) %>
+
+<% if check_admin %>
+	| <%= link_to 'Usuarios', users_path %>
+<% end %>

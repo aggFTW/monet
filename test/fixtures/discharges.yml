@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  dateof: 2013-08-13
+  reason: MyString
+  student: 
+
+two:
+  dateof: 2013-08-13
+  reason: MyString
+  student: 

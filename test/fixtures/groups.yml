@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  schedule: 2013-08-13 19:36:55
+  days: MyString
+  schoolyear: 
+
+two:
+  name: MyString
+  schedule: 2013-08-13 19:36:55
+  days: MyString
+  schoolyear: 

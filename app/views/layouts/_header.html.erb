@@ -1,0 +1,32 @@
+<% if protect_against_forgery? %>
+<script type='text/javascript'>
+  //<![CDATA[
+  window._auth_token_name = "#{request_forgery_protection_token}";
+  window._auth_token = "#{form_authenticity_token}";
+//]]>
+</script>
+<% end %>
+<!-- <%= javascript_include_tag 'application' %> -->
+<div class="navbar navbar-fixed-top navbar-inverse">
+	<div class="navbar-inner">
+		<div class="container">
+			
+			<%= link_to("<img src='/assets/logo_monet.jpg' height='100' width='100' /><i class='icon-home icon-white'></i>".html_safe, root_path, {:class => "brand"}) %>
+
+			<% if session[:user_id].nil? %>
+			<%= form_tag({:controller=>"sessions", :action => 'login'}, {:class => "navbar-form pull-right"}) do %>
+			<%= text_field_tag(:gusername, nil, {:placeholder => 'Usuario', :class => 'span2'})%>
+			<%= password_field_tag(:gpassword, nil, {:placeholder => 'Contraseña', :class => 'span2'})%>
+			<%= submit_tag("Sign In", :class => "btn") %>
+			<% end %>
+			<% else %>
+			<!-- If logged in: -->
+			<ul class="nav pull-right">
+				<!-- Log out -->
+				<%= link_to("Log out", {:controller => :sessions, :action => :logout}, {:class => "btn btn-danger", :style => ""}) %>
+			</ul>
+			<% end %>
+
+		</div>
+	</div>
+</div>

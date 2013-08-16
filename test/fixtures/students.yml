@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  school: MyString
+  sInscription: 1.5
+  sMaterial: 1.5
+  sExposition: 1.5
+  sTuition: 1.5
+  sType: MyString
+  person: 
+
+two:
+  school: MyString
+  sInscription: 1.5
+  sMaterial: 1.5
+  sExposition: 1.5
+  sTuition: 1.5
+  sType: MyString
+  person: 
