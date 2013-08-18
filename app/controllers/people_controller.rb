@@ -15,15 +15,20 @@ class PeopleController < ApplicationController
 	end
 
 	def create
-		@person = Person.new(params[:person])
+		if check_admin
+			@person = Person.new(params[:person])
 		
-		if @person.save
-			flash[:notice] = "Persona creada de manera exitosa."
-		else
-			flash[:error] = "Sus datos no son válidos."
-		end
+			if @person.save
+				flash[:notice] = "Persona creada de manera exitosa."
+			else
+				flash[:error] = "Sus datos no son válidos."
+			end
 
-		redirect_to(people_path)
+			redirect_to(people_path)
+		else
+			flash[:error] = "Acceso restringido."
+			redirect_to(root_path)
+		end
 	end
 
 
