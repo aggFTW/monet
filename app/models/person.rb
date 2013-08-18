@@ -1,13 +1,19 @@
 #encoding: utf-8
 
 class Person < ActiveRecord::Base
-  has_one :address
-  has_one :dad, :class_name => "Person", :foreign_key => 'dad_id'
-  has_one :mom, :class_name => "Person", :foreign_key => 'mom_id'
+  belongs_to :address
+  belongs_to :user
+  belongs_to :dad, :class_name => "Person", :foreign_key => 'dad_id'
+  belongs_to :mom, :class_name => "Person", :foreign_key => 'mom_id'
   has_many :siblingrelations
-  has_many :siblings, :class_name => "Person"
+  has_many :siblings, :through => :siblingrelations, :class_name => "Person"
 
-  attr_accessible :address, :cellr, :dob, :email, :fname, :lname, :dad, :mom, :sex
+  attr_accessible :address, :cellr, :dob, :email, :fname, :lname, :dad, :mom, :sex, :user, :dad_id, :mom_id, :address_id
+
+  validates :fname, :presence => true
+  validates :lname, :presence => true
+  validates :dob, :presence => true
+  validates_inclusion_of :sex, in: %w( f m ), :presence => true
 
   before_save :normalizeAttributes
 
@@ -24,5 +30,10 @@ class Person < ActiveRecord::Base
     end
 
     self.lname = l.lstrip
+  end
+
+  def name
+    s = self.fname + ' ' + self.lname
+    return s
   end
 end

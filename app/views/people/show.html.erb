@@ -1,0 +1,61 @@
+<p>
+  <b>Nombre:</b>
+  <%= @person.fname %>
+</p>
+ 
+<p>
+  <b>Apellidos:</b>
+  <%= @person.lname %>
+</p>
+
+<p>
+  <b>Fecha de Nacimiento:</b>
+  <%= @person.dob %>
+</p>
+
+<p>
+  <b>Sexo:</b>
+  <%
+      if @person.sex == 'f'
+        sex = "Femenino"
+      elsif @person.sex == 'm'
+        sex = "Masculino"
+      else
+        sex = "Error"
+      end
+  %>
+  <%= sex %>
+</p>
+
+<p>
+  <b>Celular:</b>
+  <%= @person.cellr %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @person.email %>
+</p>
+
+<p>
+  <b>Papá:</b>
+  <%= @person.dad.name %>
+</p>
+
+<p>
+  <b>Mamá:</b>
+  <%= @person.mom.name %>
+</p>
+
+<p>
+  <b>Dirección:</b>
+  <%= @person.address.to_s %>
+</p>
+
+ 
+ 
+<%= link_to 'Editar', edit_person_path(@person) %>
+
+<% if check_admin %>
+	| <%= link_to 'Personas', people_path %>
+<% end %>

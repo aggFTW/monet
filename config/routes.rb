@@ -5,8 +5,9 @@ Monet::Application.routes.draw do
   # just remember to delete public/index.html.
   root :to => 'users#index'
 
-  resources :users
-  resources :siblingrelations
+  resources :users, :addresses, :charges, :classis, :discharges, :eassistances
+  resources :employees, :expenses, :groups, :payments, :people, :schoolyears
+  resources :students, :works, :siblingrelations
 
   # See how all your routes lay out with "rake routes"
 

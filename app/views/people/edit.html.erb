@@ -1,0 +1,9 @@
+<h1>Editar persona</h1>
+ 
+<%= render 'form' %>
+ 
+<%= link_to 'Mostrar', @person %> 
+<% if check_admin %>
+	|
+	<%= link_to 'Atrás', people_path %>
+<% end %>

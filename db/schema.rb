@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130816003616) do
+ActiveRecord::Schema.define(:version => 20130817202956) do
 
   create_table "addresses", :force => true do |t|
     t.string   "number"
@@ -92,7 +92,6 @@ ActiveRecord::Schema.define(:version => 20130816003616) do
     t.date     "dateof"
     t.float    "amount"
     t.text     "comment"
-    t.string   "ptype"
     t.integer  "student_id"
     t.integer  "charge_id"
     t.datetime "created_at", :null => false

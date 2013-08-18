@@ -10,4 +10,12 @@ class Student < ActiveRecord::Base
   has_many :payments
 
   attr_accessible :person, :sExposition, :sInscription, :sMaterial, :sTuition, :sType, :school
+
+  validates :sInscription, :presence => true
+  validates :sMaterial, :presence => true
+  validates :sExposition, :presence => true
+  validates :sTuition, :presence => true
+  validates_inclusion_of :sType, in: %w( Hermanos Economica ), :presence => true
+  validates :person, :presence => true, :uniqueness => true
+
 end

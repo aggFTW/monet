@@ -8,4 +8,9 @@ class Employee < ActiveRecord::Base
   has_many :expenses
 
   attr_accessible :person, :role, :salary
+
+  validates :role, :presence => true
+  validates :salary, :presence => true,
+  					 :numericality => { :greater_than_or_equal_to => 0 }
+  validates :person, :presence => true
 end

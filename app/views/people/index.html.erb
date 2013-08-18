@@ -1,0 +1,65 @@
+<h1>Personas</h1>
+ 
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Apellidos</th>
+      <th>Fecha de Nacimiento</th>
+      <th>Sexo</th>
+      <th>Celular</th>
+      <th>Email</th>
+      <th>Papá</th>
+      <th>Mamá</th>
+      <th>Dirección</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+ 
+  <tbody>
+  <% @people.each do |person| %>
+    <tr>
+      <td><%= person.fname %></td>
+      <td><%= person.lname %></td>
+      <td><%= person.dob %></td>
+      <td>
+        <%
+            if person.sex == 'f'
+              sex = "Femenino"
+            elsif person.sex == 'm'
+              sex = "Masculino"
+            else
+              sex = "Error"
+            end
+        %>
+        <%= sex %></td>
+      <td><%= person.cellr %></td>
+      <td><%= person.email %></td>
+      <td>
+        <% unless person.dad.nil? %>
+          <%= person.dad.name %>
+        <% end %>
+      </td>
+      <td>
+        <% unless person.dad.nil? %>
+          <%= person.mom.name %>
+          <% end %>
+      </td>
+      <td>
+        <% unless person.dad.nil? %>
+          <%= person.address.to_s %>
+        <% end %>
+      </td>
+      <td><%= link_to 'Mostrar', person %></td>
+      <td><%= link_to 'Editar', edit_person_path(person) %></td>
+      <td><%= link_to 'Borrar', person, :confirm => '¿Está seguro que quiere borrar a esta persona?', :method => :delete %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+ 
+<br />
+ 
+<%= link_to 'Nueva persona', new_person_path %>

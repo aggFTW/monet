@@ -7,4 +7,8 @@ class Classi < ActiveRecord::Base
   has_and_belongs_to_many :students
 
   attr_accessible :dateof, :group, :timeof
+
+  validates :dateof, :presence => true
+  validates :group, :presence => true
+  validates :timeof, :presence => true
 end

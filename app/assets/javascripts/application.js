@@ -14,3 +14,12 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
+(function($) {
+        $(document).ready(function(){
+        	var currentDate = new Date();
+
+            $("input.date_picker").datepicker({ dateFormat: 'yy-mm-dd'});
+            $("input.date_picker").datepicker("setDate", currentDate);
+        });
+
+    })(jQuery);
