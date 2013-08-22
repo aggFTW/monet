@@ -1,0 +1,31 @@
+<p>
+  <b>Descripción:</b>
+  <%= @expense.description %>
+</p>
+
+<p>
+  <b>Fecha:</b>
+  <%= @expense.dateof %>
+</p>
+
+<p>
+  <b>Cantidad:</b>
+  <%= @expense.amount %>
+</p>
+
+<p>
+  <b>Tipo:</b>
+  <%= @expense.etype %>
+</p>
+
+<p>
+  <b>Empleado:</b>
+  <%= @expense.employee.to_s %>
+</p>
+ 
+ 
+<%= link_to 'Editar', edit_expense_path(@expense) %>
+
+<% if check_admin %>
+	| <%= link_to 'Gastos', expenses_path %>
+<% end %>

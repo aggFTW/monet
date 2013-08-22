@@ -1,0 +1,14 @@
+<%= simple_form_for(@employee) do |f| %>
+	<fieldset>
+
+  		<%= f.association :person, collection: Person.all, label_method: :name, value_method: :id, :label => 'Persona' %>
+  		<%= f.input :role, :label => 'Rol' %>
+  		<%= f.input :salary, :label => 'Salario' %>
+
+		<div class="control-group">
+			<div class="controls">
+				<%= f.button :submit %>
+			</div>
+		</div>
+	</fieldset>
+<% end %>

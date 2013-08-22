@@ -1,0 +1,35 @@
+<h1>Empleados</h1>
+ 
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Rol</th>
+      <% if check_admin %>
+        <th>Salario</th>
+      <% end %>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+ 
+  <tbody>
+  <% @employees.each do |employee| %>
+    <tr>
+      <td><%= employee.person.name %></td>
+      <td><%= employee.role %></td>
+      <% if check_admin %>
+          <td><%= employee.salary %></td>
+      <% end %>
+      <td><%= link_to 'Mostrar', employee %></td>
+      <td><%= link_to 'Editar', edit_employee_path(employee) %></td>
+      <td><%= link_to 'Borrar', employee, :confirm => '¿Está seguro que quiere borrar el rol de este empleado?', :method => :delete %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+ 
+<br />
+ 
+<%= link_to 'Nuevo empleado', new_employee_path %>

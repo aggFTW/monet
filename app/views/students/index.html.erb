@@ -1,0 +1,46 @@
+<h1>Alumnos</h1>
+ 
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Escuela</th>
+      <th>Tipo de Beca</th>
+      <th>Inscripción</th>
+      <th>Material</th>
+      <th>Mensualidad</th>
+      <th>Exposición</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+ 
+  <tbody>
+  <% @students.each do |student| %>
+    <tr>
+      <td><%= student.person.name %></td>
+      <td><%= student.school %></td>
+      <td><%= student.sType %></td>
+      <% if student.sType != 'NA' %>
+        <td><%= student.sInscription %></td>
+        <td><%= student.sMaterial %></td>
+        <td><%= student.sTuition %></td>
+        <td><%= student.sExposition %></td>
+      <% else %>
+        <td><%= student.sInscription %></td>
+        <td><%= student.sMaterial %></td>
+        <td><%= student.sTuition %></td>
+        <td><%= student.sExposition %></td>
+      <% end %>
+      <td><%= link_to 'Mostrar', student %></td>
+      <td><%= link_to 'Editar', edit_student_path(student) %></td>
+      <td><%= link_to 'Borrar', student, :confirm => '¿Está seguro que quiere borrar a este alumno?', :method => :delete %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+ 
+<br />
+ 
+<%= link_to 'Nuevo alumno', new_student_path %>

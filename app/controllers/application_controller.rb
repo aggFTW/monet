@@ -2,7 +2,6 @@
 class ApplicationController < ActionController::Base
 
   helper_method :check_admin
-  helper_method :check_prof
   helper_method :check_student
 
   protect_from_forgery
@@ -12,7 +11,7 @@ class ApplicationController < ActionController::Base
 	def authenticate_user
 		unless session[:user_id]
 			# flash[:error] = "Necesita una sesión de usuario válida para esta operación. Por favor inicie sesión."
-			redirect_to("/signup")
+			redirect_to('/login')
 			return false
 		else
 			# set current user object to @current_user object variable

@@ -1,0 +1,11 @@
+<p>
+  <b>Domicilio:</b>
+  <%= @address.to_s %>
+</p>
+ 
+ 
+<%= link_to 'Editar', edit_address_path(@address) %>
+
+<% if check_admin %>
+	| <%= link_to 'Domicilios', addresses_path %>
+<% end %>

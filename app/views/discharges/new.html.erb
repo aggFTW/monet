@@ -1,0 +1,11 @@
+	<h1>Registro de nueva baja</h1>
+
+	<%= render 'form' %>
+
+	<% if @discharge.errors.any? %>
+		<ul>
+			<% for message_error in @discharge.errors.full_messages %>
+			<li>- <%= message_error %></li>
+			<% end %>
+		</ul>
+	<% end %>

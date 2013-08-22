@@ -1,0 +1,23 @@
+<p>
+  <b>Nombre:</b>
+  <%= @employee.person.user %>
+</p>
+ 
+<p>
+  <b>Rol:</b>
+  <%= @employee.role %>
+</p>
+
+<% if check_admin %>
+  <p>
+    <b>Salario:</b>
+    <%= @employee.salary %>
+  </p>
+<% end %>
+ 
+ 
+<%= link_to 'Editar', edit_user_path(@user) %>
+
+<% if check_admin %>
+	| <%= link_to 'Empleados', users_path %>
+<% end %>

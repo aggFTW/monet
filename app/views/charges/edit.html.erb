@@ -1,0 +1,9 @@
+<h1>Editar cargo</h1>
+ 
+<%= render 'form' %>
+ 
+<%= link_to 'Mostrar', @charge %> 
+<% if check_admin %>
+	|
+	<%= link_to 'Atrás', charges_path %>
+<% end %>

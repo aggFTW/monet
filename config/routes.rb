@@ -15,10 +15,12 @@ Monet::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 
-  match "signup", :to => "users#new"
   match "login", :to => "sessions#login"
   match "logout", :to => "sessions#logout"
   match "user/change_admin/:id" => "users#change_admin"
   match "user/change_student/:id" => "users#change_student"
+  match "schoolyear/close/:id" => "schoolyears#close"
+  match "schoolyear/activate/:id" => "schoolyears#activate"
+  match "schoolyear/inscription/:id" => "schoolyears#inscription"
   
 end

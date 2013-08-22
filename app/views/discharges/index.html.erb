@@ -1,0 +1,31 @@
+<h1>Baja</h1>
+ 
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Alumno</th>
+      <th>Fecha</th>
+      <th>Razón</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+ 
+  <tbody>
+  <% @discharges.each do |discharge| %>
+    <tr>
+      <td><%= discharge.student.personName %></td>
+      <td><%= discharge.dateof %></td>
+      <td><%= discharge.reason %></td>
+      <td><%= link_to 'Mostrar', discharge %></td>
+      <td><%= link_to 'Editar', edit_discharge_path(discharge) %></td>
+      <td><%= link_to 'Borrar', discharge, :confirm => '¿Está seguro que quiere borrar esta baja?', :method => :delete %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+ 
+<br />
+ 
+<%= link_to 'Nueva baja', new_discharge_path %>

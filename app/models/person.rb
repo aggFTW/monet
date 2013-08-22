@@ -33,7 +33,12 @@ class Person < ActiveRecord::Base
   end
 
   def name
-    s = self.fname + ' ' + self.lname
-    return s
+    self.fname + ' ' + self.lname
+  end
+
+
+  def self.withoutUser
+    peopleWithUsers = User.all.map { |u| u.person.id }
+    Person.where(Person.arel_table[:id].not_in(peopleWithUsers))
   end
 end

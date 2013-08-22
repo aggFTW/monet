@@ -1,0 +1,27 @@
+<h1>Domicilios</h1>
+ 
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Domicilio</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+ 
+  <tbody>
+  <% @addresses.each do |address| %>
+    <tr>
+      <td><%= address.to_s %></td>
+      <td><%= link_to 'Mostrar', address %></td>
+      <td><%= link_to 'Editar', edit_address_path(address) %></td>
+      <td><%= link_to 'Borrar', address, :confirm => '¿Está seguro que quiere borrar este domicilio?', :method => :delete %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+ 
+<br />
+ 
+<%= link_to 'Nuevo domicilio', new_address_path %>

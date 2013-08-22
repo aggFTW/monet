@@ -1,0 +1,34 @@
+<%= simple_form_for(@schoolyear) do |f| %>
+	<fieldset>
+
+  		<%= f.input :name, :label => 'Nombre' %>
+
+  		<%= label_tag "tag1", "Fecha de Inicio" %>
+		<%= text_field nil, nil, {:class => 'date_picker', :id => "schoolyear_beginning", :name => 'schoolyear[beginning]', :required => 'required'} %>
+
+		<%= label_tag "tag2", "Fecha de Fin" %>
+		<%= text_field nil, nil, {:class => 'date_picker', :id => "schoolyear_end", :name => 'schoolyear[end]', :required => 'required'} %>
+
+  		<%= f.input :stdInscription, :label => 'Inscripción' %>
+
+  		<%= f.input :stdMaterial, :label => 'Material' %>
+
+  		<%= f.input :stdTuition, :label => 'Mensualidad' %>
+
+  		<%= f.input :stdTuitionSiblings, :label => 'Mensualidad para Hermanos' %>
+
+  		<%= f.input :stdExposition, :label => 'Exposición' %>
+
+  		<%= f.input :state, 
+			:collection => [['Activo', 'Activo'], ['Inscripciones', 'Inscripciones'], ['Cerrado', 'Cerrado']], 
+			:as => :radio,
+			:label => 'Estado',
+			:item_wrapper_class => 'inline' %>
+
+		<div class="control-group">
+			<div class="controls">
+				<%= f.button :submit %>
+			</div>
+		</div>
+	</fieldset>
+<% end %>

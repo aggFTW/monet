@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   belongs_to :person
 
   has_secure_password
-  attr_accessible :password, :username, :password_confirmation, :person
+  attr_accessible :password, :username, :password_confirmation, :person, :person_id
 
   validates :username,	:presence => true, :uniqueness => true
   validates :utype,	:presence => true,

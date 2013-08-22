@@ -1,0 +1,201 @@
+<h1>Ciclos Escolares</h1>
+
+<% if @schoolyearsA != nil and @schoolyearsA.length > 0 %>
+  <table class="table table-bordered table-striped">
+    <caption>Ciclo Escolar Activo</caption>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Fecha de Inicio</th>
+        <th>Fecha de Fin</th>
+        <th>Costo de Inscripción</th>
+        <th>Costo de Material</th>
+        <th>Costo de Mensualidad</th>
+        <th>Costo de Mensualidad para Hermanos</th>
+        <th>Costo de Exposición</th>
+        <% if check_admin %>
+          <th>Acciones</th>
+        <% end %>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+   
+    <tbody>
+    <% @schoolyearsA.each do |schoolyear| %>
+      <tr>
+        <td><%= schoolyear.name %></td>
+        <td><%= schoolyear.beginning %></td>
+        <td><%= schoolyear.end %></td>
+        <td><%= schoolyear.stdInscription %></td>
+        <td><%= schoolyear.stdMaterial %></td>
+        <td><%= schoolyear.stdTuition %></td>
+        <td><%= schoolyear.stdTuitionSiblings %></td>
+        <td><%= schoolyear.stdExposition %></td>
+        <% if check_admin %>
+          <td>
+            <%= link_to "Activo", "schoolyear/activate/" + schoolyear.id.to_s, {class: "btn btn-mini"} %> <br />
+            <%= link_to "Inscripciones", "schoolyear/inscription/" + schoolyear.id.to_s, {class: "btn btn-mini"} %> <br />
+            <%= link_to "Cerrar", "schoolyear/close/" + schoolyear.id.to_s, {class: "btn btn-mini"} %>
+          </td>
+        <% end %>
+        <td><%= link_to 'Mostrar', schoolyear %></td>
+        <td><%= link_to 'Editar', edit_schoolyear_path(schoolyear) %></td>
+        <td><%= link_to 'Borrar', schoolyear, :confirm => '¿Está seguro que quiere borrar este ciclo escolar?', :method => :delete %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+<% else %>
+  
+  <table class="table table-striped table-bordered table-condensed">
+    <tbody>
+      <tr>
+        <td>No hay ciclos escolares activos.</td>
+      </tr>
+    </tbody>
+  </table>
+
+<% end %>
+
+
+
+
+
+
+<% if @schoolyearsI != nil and @schoolyearsI.length > 0 %>
+  <table class="table table-bordered table-striped">
+    <caption>Ciclo Escolar Abierto a Inscripciones</caption>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Fecha de Inicio</th>
+        <th>Fecha de Fin</th>
+        <th>Costo de Inscripción</th>
+        <th>Costo de Material</th>
+        <th>Costo de Mensualidad</th>
+        <th>Costo de Mensualidad para Hermanos</th>
+        <th>Costo de Exposición</th>
+        <% if check_admin %>
+          <th>Acciones</th>
+        <% end %>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+   
+    <tbody>
+    <% @schoolyearsI.each do |schoolyear| %>
+      <tr>
+        <td><%= schoolyear.name %></td>
+        <td><%= schoolyear.beginning %></td>
+        <td><%= schoolyear.end %></td>
+        <td><%= schoolyear.stdInscription %></td>
+        <td><%= schoolyear.stdMaterial %></td>
+        <td><%= schoolyear.stdTuition %></td>
+        <td><%= schoolyear.stdTuitionSiblings %></td>
+        <td><%= schoolyear.stdExposition %></td>
+        <% if check_admin %>
+          <td>
+            <%= link_to "Activo", "schoolyear/activate/" + schoolyear.id.to_s, {class: "btn btn-mini"} %> <br />
+            <%= link_to "Inscripciones", "schoolyear/inscription/" + schoolyear.id.to_s, {class: "btn btn-mini"} %> <br />
+            <%= link_to "Cerrar", "schoolyear/close/" + schoolyear.id.to_s, {class: "btn btn-mini"} %>
+          </td>
+        <% end %>
+        <td><%= link_to 'Mostrar', schoolyear %></td>
+        <td><%= link_to 'Editar', edit_schoolyear_path(schoolyear) %></td>
+        <td><%= link_to 'Borrar', schoolyear, :confirm => '¿Está seguro que quiere borrar este ciclo escolar?', :method => :delete %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+<% else %>
+  
+  <table class="table table-striped table-bordered table-condensed">
+    <tbody>
+      <tr>
+        <td>No hay ciclos escolares abiertos para inscripciones.</td>
+      </tr>
+    </tbody>
+  </table>
+
+<% end %>
+
+
+
+
+
+
+
+<% if @schoolyearsC != nil and @schoolyearsC.length > 0 %>
+  <table class="table table-bordered table-striped">
+    <caption>Ciclos Escolares Cerrados</caption>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Fecha de Inicio</th>
+        <th>Fecha de Fin</th>
+        <th>Costo de Inscripción</th>
+        <th>Costo de Material</th>
+        <th>Costo de Mensualidad</th>
+        <th>Costo de Mensualidad para Hermanos</th>
+        <th>Costo de Exposición</th>
+        <% if check_admin %>
+          <th>Acciones</th>
+        <% end %>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+   
+    <tbody>
+    <% @schoolyearsC.each do |schoolyear| %>
+      <tr>
+        <td><%= schoolyear.name %></td>
+        <td><%= schoolyear.beginning %></td>
+        <td><%= schoolyear.end %></td>
+        <td><%= schoolyear.stdInscription %></td>
+        <td><%= schoolyear.stdMaterial %></td>
+        <td><%= schoolyear.stdTuition %></td>
+        <td><%= schoolyear.stdTuitionSiblings %></td>
+        <td><%= schoolyear.stdExposition %></td>
+        <% if check_admin %>
+          <td>
+            <%= link_to "Activo", "schoolyear/activate/" + schoolyear.id.to_s, {class: "btn btn-mini"} %> <br />
+            <%= link_to "Inscripciones", "schoolyear/inscription/" + schoolyear.id.to_s, {class: "btn btn-mini"} %> <br />
+            <%= link_to "Cerrar", "schoolyear/close/" + schoolyear.id.to_s, {class: "btn btn-mini"} %>
+          </td>
+        <% end %>
+        <td><%= link_to 'Mostrar', schoolyear %></td>
+        <td><%= link_to 'Editar', edit_schoolyear_path(schoolyear) %></td>
+        <td><%= link_to 'Borrar', schoolyear, :confirm => '¿Está seguro que quiere borrar este ciclo escolar?', :method => :delete %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+<% else %>
+  
+  <table class="table table-striped table-bordered table-condensed">
+    <tbody>
+      <tr>
+        <td>No hay ciclos escolares cerrados.</td>
+      </tr>
+    </tbody>
+  </table>
+
+<% end %>
+
+
+
+
+
+ 
+<br />
+ 
+<%= link_to 'Nuevo ciclo escolar', new_schoolyear_path %>

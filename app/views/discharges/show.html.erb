@@ -1,0 +1,21 @@
+<p>
+  <b>Alumno:</b>
+  <%= @discharge.student.personName %>
+</p>
+
+<p>
+  <b>Fecha:</b>
+  <%= @discharge.dateof %>
+</p>
+
+<p>
+  <b>Razón:</b>
+  <%= @discharge.reason %>
+</p>
+ 
+ 
+<%= link_to 'Editar', edit_discharge_path(@discharge) %>
+
+<% if check_admin %>
+	| <%= link_to 'Bajas', discharges_path %>
+<% end %>

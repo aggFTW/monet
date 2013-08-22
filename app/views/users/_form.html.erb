@@ -6,6 +6,7 @@
   		<%= f.password_field :password %>
   		<%= f.label :password_confirmation, 'Confirmar Password' %>
   		<%= f.password_field :password_confirmation %>
+  		<%= f.association :person, collection: Person.withoutUser, label_method: :name, value_method: :id, :label => 'Persona' %>
 
 		<div class="control-group">
 			<div class="controls">

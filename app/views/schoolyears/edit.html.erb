@@ -1,0 +1,9 @@
+<h1>Editar Ciclo Escolar</h1>
+ 
+<%= render 'form' %>
+ 
+<%= link_to 'Mostrar', @schoolyear %> 
+<% if check_admin %>
+	|
+	<%= link_to 'Atrás', schoolyears_path %>
+<% end %>

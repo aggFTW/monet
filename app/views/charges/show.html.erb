@@ -1,0 +1,26 @@
+<p>
+  <b>Descripción:</b>
+  <%= @charge.name %>
+</p>
+
+<p>
+  <b>Fecha Límite:</b>
+  <%= @charge.datedue %>
+</p>
+
+<p>
+  <b>Cantidad:</b>
+  <%= @charge.amount %>
+</p>
+
+<p>
+  <b>Tipo:</b>
+  <%= @charge.ctype %>
+</p>
+ 
+ 
+<%= link_to 'Editar', edit_charge_path(@charge) %>
+
+<% if check_admin %>
+	| <%= link_to 'Cargos', charges_path %>
+<% end %>

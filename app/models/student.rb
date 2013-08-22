@@ -9,13 +9,24 @@ class Student < ActiveRecord::Base
   has_many :works
   has_many :payments
 
-  attr_accessible :person, :sExposition, :sInscription, :sMaterial, :sTuition, :sType, :school
+  attr_accessible :person, :sExposition, :sInscription, :sMaterial, :sTuition, :sType, :school, :person_id
 
-  validates :sInscription, :presence => true
-  validates :sMaterial, :presence => true
-  validates :sExposition, :presence => true
-  validates :sTuition, :presence => true
-  validates_inclusion_of :sType, in: %w( Hermanos Economica ), :presence => true
-  validates :person, :presence => true, :uniqueness => true
+  validates_inclusion_of :sType, in: %w( Hermanos Economica NA )
+  validates :person_id, :presence => true, :uniqueness => true
+
+  before_save :payments
+
+  def payments
+    if self.sType == 'NA'
+      self.sExposition = 0
+      self.sInscription = 0
+      self.sMaterial = 0
+      self.sTuition = 0
+    end
+  end
+
+  def personName
+    return self.person.name
+  end
 
 end

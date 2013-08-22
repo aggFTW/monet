@@ -1,0 +1,11 @@
+	<h1>Registro de nuevo alumno</h1>
+
+	<%= render 'form' %>
+
+	<% if @student.errors.any? %>
+		<ul>
+			<% for message_error in @student.errors.full_messages %>
+			<li>- <%= message_error %></li>
+			<% end %>
+		</ul>
+	<% end %>

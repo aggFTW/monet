@@ -1,0 +1,9 @@
+<h1>Editar alumno</h1>
+ 
+<%= render 'form' %>
+ 
+<%= link_to 'Mostrar', @student %> 
+<% if check_admin %>
+	|
+	<%= link_to 'Atrás', students_path %>
+<% end %>

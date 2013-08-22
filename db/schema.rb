@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130817202956) do
+ActiveRecord::Schema.define(:version => 20130821235559) do
 
   create_table "addresses", :force => true do |t|
     t.string   "number"
@@ -32,12 +32,22 @@ ActiveRecord::Schema.define(:version => 20130817202956) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "charges_students", :force => true do |t|
+    t.integer "student_id"
+    t.integer "charge_id"
+  end
+
   create_table "classis", :force => true do |t|
     t.date     "dateof"
     t.time     "timeof"
     t.integer  "group_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "classis_students", :force => true do |t|
+    t.integer "student_id"
+    t.integer "classi_id"
   end
 
   create_table "discharges", :force => true do |t|
@@ -88,6 +98,11 @@ ActiveRecord::Schema.define(:version => 20130817202956) do
     t.datetime "updated_at",    :null => false
   end
 
+  create_table "groups_students", :force => true do |t|
+    t.integer "student_id"
+    t.integer "group_id"
+  end
+
   create_table "payments", :force => true do |t|
     t.date     "dateof"
     t.float    "amount"
@@ -96,6 +111,7 @@ ActiveRecord::Schema.define(:version => 20130817202956) do
     t.integer  "charge_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "ptype"
   end
 
   create_table "people", :force => true do |t|
@@ -116,9 +132,14 @@ ActiveRecord::Schema.define(:version => 20130817202956) do
     t.string   "name"
     t.date     "beginning"
     t.date     "end"
-    t.boolean  "active"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.float    "stdTuition"
+    t.float    "stdTuitionSiblings"
+    t.string   "state"
+    t.float    "stdInscription"
+    t.float    "stdMaterial"
+    t.float    "stdExposition"
   end
 
   create_table "siblingrelations", :force => true do |t|
@@ -136,21 +157,6 @@ ActiveRecord::Schema.define(:version => 20130817202956) do
     t.integer  "person_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-  end
-
-  create_table "students_charges", :force => true do |t|
-    t.integer "student_id"
-    t.integer "charge_id"
-  end
-
-  create_table "students_classis", :force => true do |t|
-    t.integer "student_id"
-    t.integer "classi_id"
-  end
-
-  create_table "students_groups", :force => true do |t|
-    t.integer "student_id"
-    t.integer "group_id"
   end
 
   create_table "users", :force => true do |t|

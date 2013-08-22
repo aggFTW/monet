@@ -1,0 +1,9 @@
+<h1>Editar domicilio</h1>
+ 
+<%= render 'form' %>
+ 
+<%= link_to 'Mostrar', @address %> 
+<% if check_admin %>
+	|
+	<%= link_to 'Atrás', addresses_path %>
+<% end %>

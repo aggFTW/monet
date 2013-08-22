@@ -1,0 +1,23 @@
+<%= simple_form_for(@charge) do |f| %>
+	<fieldset>
+
+  		<%= f.input :name, :label => 'Descripción' %>
+
+  		<%= label_tag "tag1", "Fecha Límite:" %>
+		<%= text_field nil, nil, {:class => 'date_picker', :id => "charge_datedue", :name => 'charge[datedue]', :required => 'required'} %>
+
+  		<%= f.input :amount, :label => 'Cantidad' %>
+
+  		<%= f.input :ctype, 
+			:collection => [['Renta', 'Renta'], ['Servicios', 'Servicios'], ['Material', 'Material'], ['Sueldos', 'Sueldos']],
+			:as => :radio,
+			:label => 'Tipo',
+			:item_wrapper_class => 'inline'%>
+
+		<div class="control-group">
+			<div class="controls">
+				<%= f.button :submit %>
+			</div>
+		</div>
+	</fieldset>
+<% end %>

@@ -13,15 +13,11 @@ class UsersController < ApplicationController
 	end
 
 	def new
-		@user = User.new
-	end
-
-	def signup
-		if session[:user_id].nil?
+		if check_admin
 			@user = User.new
 		else
-			user = User.find session[:user_id]
-			redirect_to(user)
+			flash[:error] = "Acceso restringido."
+			redirect_to(root_path)
 		end
 	end
 

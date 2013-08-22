@@ -1,0 +1,52 @@
+<p>
+  <b>Nombre:</b>
+  <%= @schoolyear.name %>
+</p>
+ 
+<p>
+  <b>Fecha de Inicio:</b>
+  <%= @schoolyear.beginning %>
+</p>
+
+<p>
+  <b>Fecha de Fin:</b>
+  <%= @schoolyear.end %>
+</p>
+
+<p>
+  <b>Estado:</b>
+  <%= @schoolyear.state %>
+</p>
+
+<p>
+  <b>Inscripción:</b>
+  <%= @schoolyear.stdInscription %>
+</p>
+
+<p>
+  <b>Material:</b>
+  <%= @schoolyear.stdMaterial %>
+</p>
+
+<p>
+  <b>Mensualidad:</b>
+  <%= @schoolyear.stdTuition %>
+</p>
+
+<p>
+  <b>Mensualidad para hermanos:</b>
+  <%= @schoolyear.stdTuitionSiblings %>
+</p>
+
+<p>
+  <b>Exposición:</b>
+  <%= @schoolyear.stdExposition %>
+</p>
+
+ 
+ 
+<%= link_to 'Editar', edit_schoolyear_path(@schoolyear) %>
+
+<% if check_admin %>
+	| <%= link_to 'Ciclos Escolares', schoolyears_path %>
+<% end %>

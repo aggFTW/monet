@@ -5,7 +5,6 @@
     <tr>
       <th>Usuario</th>
       <th>Nombre</th>
-      <th>Apellidos</th>
       <th>Tipo</th>
       <% if check_admin %>
         <th>Cambiar tipo</th>
@@ -20,8 +19,7 @@
   <% @users.each do |user| %>
     <tr>
       <td><%= user.username %></td>
-      <td><%= user.person.fname %></td>
-      <td><%= user.person.lname %></td>
+      <td><%= user.person.name %></td>
       <td>
         <%
             if user.utype == 0

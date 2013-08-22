@@ -1,0 +1,33 @@
+<h1>Cargos</h1>
+ 
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Descripción</th>
+      <th>Fecha Límite</th>
+      <th>Cantidad</th>
+      <th>Tipo</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+ 
+  <tbody>
+  <% @charges.each do |charge| %>
+    <tr>
+      <td><%= charge.name %></td>
+      <td><%= charge.datedue %></td>
+      <td><%= charge.amount %></td>
+      <td><%= charge.ctype %></td>
+      <td><%= link_to 'Mostrar', charge %></td>
+      <td><%= link_to 'Editar', edit_charge_path(charge) %></td>
+      <td><%= link_to 'Borrar', charge, :confirm => '¿Está seguro que quiere borrar este cargo?', :method => :delete %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+ 
+<br />
+ 
+<%= link_to 'Nuevo cargo', new_charge_path %>

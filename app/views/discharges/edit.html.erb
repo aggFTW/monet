@@ -1,0 +1,9 @@
+<h1>Editar baja</h1>
+ 
+<%= render 'form' %>
+ 
+<%= link_to 'Mostrar', @discharge %> 
+<% if check_admin %>
+	|
+	<%= link_to 'Atrás', discharges_path %>
+<% end %>

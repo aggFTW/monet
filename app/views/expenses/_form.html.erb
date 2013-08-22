@@ -1,0 +1,25 @@
+<%= simple_form_for(@expense) do |f| %>
+	<fieldset>
+
+  		<%= f.input :description, :label => 'Descripción' %>
+
+  		<%= label_tag "tag1", "Fecha:" %>
+		<%= text_field nil, nil, {:class => 'date_picker', :id => "expense_datedof", :name => 'expense[dateof]', :required => 'required'} %>
+
+  		<%= f.input :amount, :label => 'Cantidad:' %>
+
+  		<%= f.input :etype, 
+			:collection => [['Renta', 'Renta'], ['Servicios', 'Servicios'], ['Material', 'Material'], ['Sueldos', 'Sueldos'], ['Impuestos', 'Impuestos']],
+			:as => :radio,
+			:label => 'Tipo:',
+			:item_wrapper_class => 'inline'%>
+
+		<%= f.association :employee, collection: Employee.all, label_method: :to_s, value_method: :id, :label => 'Empleado:' %>
+
+		<div class="control-group">
+			<div class="controls">
+				<%= f.button :submit %>
+			</div>
+		</div>
+	</fieldset>
+<% end %>

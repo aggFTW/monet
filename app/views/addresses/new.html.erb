@@ -1,0 +1,11 @@
+	<h1>Registro de nuevo domicilio</h1>
+
+	<%= render 'form' %>
+
+	<% if @address.errors.any? %>
+		<ul>
+			<% for message_error in @address.errors.full_messages %>
+			<li>- <%= message_error %></li>
+			<% end %>
+		</ul>
+	<% end %>

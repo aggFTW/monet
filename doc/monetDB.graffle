@@ -63,8 +63,8 @@
 			<integer>103</integer>
 			<key>Points</key>
 			<array>
-				<string>{103.49946664272032, 202.10327205076766}</string>
-				<string>{277.50053335740745, 210.14669777482086}</string>
+				<string>{103.49946664271995, 202.10327723118647}</string>
+				<string>{277.50053335728006, 210.14672276641988}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -96,8 +96,8 @@
 			<integer>102</integer>
 			<key>Points</key>
 			<array>
-				<string>{60.118856785158641, 228.49862375844165}</string>
-				<string>{77.442481506273538, 461.50137624155832}</string>
+				<string>{58.688658163920323, 228.499854105959}</string>
+				<string>{64.318776568706511, 461.50014589404151}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -129,8 +129,8 @@
 			<integer>101</integer>
 			<key>Points</key>
 			<array>
-				<string>{448.49565432277547, 86.962264772005042}</string>
-				<string>{559.5043434921148, 72.230284691970624}</string>
+				<string>{448.49565490144107, 86.962661560466486}</string>
+				<string>{559.50434509840875, 72.231649689106618}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -496,7 +496,7 @@ schoolyear_id}</string>
 			<key>Points</key>
 			<array>
 				<string>{166.99998890673544, 366}</string>
-				<string>{166.99998890673544, 304.5}</string>
+				<string>{166.99998890673544, 318.5}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -528,8 +528,8 @@ schoolyear_id}</string>
 			<integer>87</integer>
 			<key>Points</key>
 			<array>
-				<string>{212.49999808445608, 268.87359918323415}</string>
-				<string>{277.50002372089813, 268.69302650903325}</string>
+				<string>{212.49930424944532, 273.59716498414474}</string>
+				<string>{277.50044201032102, 270.16443095757631}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -561,8 +561,8 @@ schoolyear_id}</string>
 			<integer>86</integer>
 			<key>Points</key>
 			<array>
-				<string>{123.5, 504.0005791642397}</string>
-				<string>{202.49999999999997, 504.00158474610652}</string>
+				<string>{123.49856267290014, 513.51682836503869}</string>
+				<string>{202.50148423212013, 507.51356928605009}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -660,8 +660,8 @@ schoolyear_id}</string>
 			<integer>83</integer>
 			<key>Points</key>
 			<array>
-				<string>{111.28301654828978, 114.29406165521296}</string>
-				<string>{277.59561143548467, 235.23346841770436}</string>
+				<string>{111.28313083439477, 114.29406091035916}</string>
+				<string>{277.59561381206527, 235.23291006237403}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -736,8 +736,8 @@ schoolyear_id}</string>
 			<integer>82</integer>
 			<key>Points</key>
 			<array>
-				<string>{293.49999925104896, 504.07832929734229}</string>
-				<string>{334.50000268681356, 504.14891174817785}</string>
+				<string>{293.5, 504.00165918937608}</string>
+				<string>{334.49999999999994, 504.00315428309966}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -769,8 +769,8 @@ schoolyear_id}</string>
 			<integer>81</integer>
 			<key>Points</key>
 			<array>
-				<string>{259.49999999999716, 92.996827877865414}</string>
-				<string>{357.4999999994406, 92.989995614806347}</string>
+				<string>{259.5, 92.999989834063825}</string>
+				<string>{357.5, 92.999989834063825}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -802,8 +802,8 @@ schoolyear_id}</string>
 			<integer>80</integer>
 			<key>Points</key>
 			<array>
-				<string>{360.45407993755356, 156.41521011731353}</string>
-				<string>{327.96898859151793, 204.8346329518732}</string>
+				<string>{360.45729346398929, 156.41521987941812}</string>
+				<string>{327.97456859879412, 204.83478006573057}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -835,8 +835,8 @@ schoolyear_id}</string>
 			<integer>38</integer>
 			<key>Points</key>
 			<array>
-				<string>{448.29516435395931, 154.9325793929446}</string>
-				<string>{495.58782072241883, 219.59635171871696}</string>
+				<string>{448.29515929643077, 154.93419719902849}</string>
+				<string>{495.58543801012178, 219.59641481665255}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -965,7 +965,7 @@ person_id}</string>
 			<array>
 				<dict>
 					<key>Bounds</key>
-					<string>{{33, 462}, {90, 14}}</string>
+					<string>{{6, 462}, {117, 14}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -1001,7 +1001,7 @@ person_id}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{33, 476}, {90, 56}}</string>
+					<string>{{6, 476}, {117, 84}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -1033,7 +1033,9 @@ person_id}</string>
 \f0\fs24 \cf0 name\
 beginning\
 end\
-active}</string>
+state\
+stdTuition\
+stdTuitionSiblings}</string>
 						<key>VerticalPad</key>
 						<integer>0</integer>
 					</dict>
@@ -1204,7 +1206,7 @@ address_id}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{122, 234}, {90, 70}}</string>
+					<string>{{122, 234}, {90, 84}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -1236,6 +1238,7 @@ address_id}</string>
 \f0\fs24 \cf0 dateof\
 amount\
 comment\
+ptype\
 student_id\
 charge_id}</string>
 						<key>VerticalPad</key>
@@ -1405,8 +1408,8 @@ schoolyear_id}</string>
 			<integer>6</integer>
 			<key>Points</key>
 			<array>
-				<string>{425.49999733732596, 503.85154400759006}</string>
-				<string>{455.50000733000752, 503.7536608973395}</string>
+				<string>{425.50000000049636, 503.99288812091794}</string>
+				<string>{455.50000003027486, 503.98819896987021}</string>
 			</array>
 			<key>Style</key>
 			<dict>
@@ -2165,7 +2168,7 @@ interior}</string>
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2013-08-18 01:00:12 +0000</string>
+	<string>2013-08-21 23:56:46 +0000</string>
 	<key>Modifier</key>
 	<string>Alejandro Guerrero</string>
 	<key>NotesVisible</key>

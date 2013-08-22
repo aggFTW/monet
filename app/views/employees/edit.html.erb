@@ -1,0 +1,9 @@
+<h1>Editar empleado</h1>
+ 
+<%= render 'form' %>
+ 
+<%= link_to 'Mostrar', @employee %> 
+<% if check_admin %>
+	|
+	<%= link_to 'Atrás', employees_path %>
+<% end %>

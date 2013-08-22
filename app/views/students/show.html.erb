@@ -1,0 +1,45 @@
+<p>
+  <b>Nombre:</b>
+  <%= @student.person.user %>
+</p>
+ 
+<p>
+  <b>Escuela:</b>
+  <%= @student.school %>
+</p>
+
+<% if @student.sType != 'NA' %>
+	<p>
+	  <b>Tipo de beca:</b>
+	  <%= @student.sType %>
+	</p>
+	<p>
+	  <b>Monto de Inscripción:</b>
+	  <%= @student.sInscription %>
+	</p>
+	<p>
+	  <b>Monto de Material:</b>
+	  <%= @student.sMaterial %>
+	</p>
+	<p>
+	  <b>Monto de Mensualidad:</b>
+	  <%= @student.sTuition %>
+	</p>
+	<p>
+	  <b>Monto de Exposición:</b>
+	  <%= @student.sExposition %>
+	</p>
+<% else %>
+	<p>
+	  <b>Tipo de beca:</b>
+	  N.A.
+	</p>
+<% end %>
+
+ 
+ 
+<%= link_to 'Editar', edit_student_path(@student) %>
+
+<% if check_admin %>
+	| <%= link_to 'Alumnos', students_path %>
+<% end %>

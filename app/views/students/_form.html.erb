@@ -1,0 +1,26 @@
+<%= simple_form_for(@student) do |f| %>
+	<fieldset>
+
+  		<%= f.association :person, collection: Person.all, label_method: :name, value_method: :id, :label => 'Persona' %>
+  		<%= f.input :school, :label => 'Escuela' %>
+
+  		<h3>Beca - Montos a pagar</h3>
+  		<%= f.input :sType, 
+			:collection => [['N.A.', 'NA'], ['Hermanos', 'Hermanos'], ['Económica', 'Economica']], 
+			:as => :radio,
+			:label => 'Tipo de beca',
+			:item_wrapper_class => 'inline'%>
+		<br />
+  		<%= f.input :sInscription, :label => 'Inscripción' %>
+  		<%= f.input :sMaterial, :label => 'Material' %>
+  		<%= f.input :sTuition, :label => 'Mensualidad' %>
+  		<%= f.input :sExposition, :label => 'Exposición' %>
+  		
+
+		<div class="control-group">
+			<div class="controls">
+				<%= f.button :submit %>
+			</div>
+		</div>
+	</fieldset>
+<% end %>

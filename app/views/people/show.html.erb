@@ -39,17 +39,23 @@
 
 <p>
   <b>Papá:</b>
-  <%= @person.dad.name %>
+  <% unless @person.dad.nil? %>
+    <%= @person.dad.name %>
+  <% end %>
 </p>
 
 <p>
   <b>Mamá:</b>
-  <%= @person.mom.name %>
+  <% unless @person.mom.nil? %>
+    <%= @person.mom.name %>
+  <% end %>
 </p>
 
 <p>
   <b>Dirección:</b>
-  <%= @person.address.to_s %>
+  <% unless @person.dad.nil? %>
+    <%= @person.address.to_s %>
+  <% end %>
 </p>
 
  

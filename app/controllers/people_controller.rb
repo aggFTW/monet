@@ -11,7 +11,12 @@ class PeopleController < ApplicationController
 	end
 
 	def new
-		@person = Person.new
+		if check_admin
+			@person = Person.new
+		else
+			flash[:error] = "Acceso restringido."
+			redirect_to(root_path)
+		end
 	end
 
 	def create
