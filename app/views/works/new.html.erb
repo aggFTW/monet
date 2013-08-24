@@ -1,0 +1,11 @@
+	<h1>Registro de nueva obra</h1>
+
+	<%= render 'form' %>
+
+	<% if @work.errors.any? %>
+		<ul>
+			<% for message_error in @work.errors.full_messages %>
+			<li>- <%= message_error %></li>
+			<% end %>
+		</ul>
+	<% end %>

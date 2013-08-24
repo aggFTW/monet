@@ -1,0 +1,26 @@
+<p>
+  <b>Alumno:</b>
+  <%= @work.student.personName %>
+</p>
+
+<p>
+  <b>Ciclo escolar:</b>
+  <%= @work.schoolyear.name %>
+</p>
+
+<p>
+  <b>Título:</b>
+  <%= @work.title %>
+</p>
+
+<p>
+  <b>Técnica:</b>
+  <%= @work.technique %>
+</p>
+ 
+ 
+<%= link_to 'Editar', edit_work_path(@work) %>
+
+<% if check_admin %>
+	| <%= link_to 'Obras', works_path %>
+<% end %>

@@ -1,0 +1,9 @@
+<h1>Editar grupo</h1>
+ 
+<%= render 'form' %>
+ 
+<%= link_to 'Mostrar', @group %> 
+<% if check_admin %>
+	|
+	<%= link_to 'Atrás', groups_path %>
+<% end %>

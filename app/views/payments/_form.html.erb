@@ -1,0 +1,28 @@
+<%= simple_form_for(@payment) do |f| %>
+	<fieldset>
+
+		<%= f.association :student, collection: Student.all, label_method: :personName, value_method: :id, :label => 'Alumno:' %>
+
+		<%= f.association :charge, collection: Charge.all, label_method: :name, value_method: :id, :label => 'Cargo:' %>
+
+		<%= label_tag "tag1", "Fecha de Pago:" %>
+		<%= text_field nil, nil, {:class => 'date_picker', :id => "payment_dateof", :name => 'payment[dateof]', :required => 'required'} %>
+
+		<%= f.input :amount, :label => 'Cantidad:' %>
+
+		<%= f.input :ptype, 
+			:collection => [['Cheque', 'Cheque'], ['Efectivo', 'Efectivo'], ['Tarjeta', 'Tarjeta']], 
+			:as => :radio,
+			:label => 'Tipo:',
+			:item_wrapper_class => 'inline' %>
+		<br />
+
+		<%= f.input :comment, :label => 'Comentarios:' %>
+
+		<div class="control-group">
+			<div class="controls">
+				<%= f.button :submit %>
+			</div>
+		</div>
+	</fieldset>
+<% end %>

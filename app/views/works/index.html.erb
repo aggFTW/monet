@@ -1,0 +1,33 @@
+<h1>Obras</h1>
+ 
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Alumno</th>
+      <th>Ciclo Escolar</th>
+      <th>Título</th>
+      <th>Técnica</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+ 
+  <tbody>
+  <% @works.each do |work| %>
+    <tr>
+      <td><%= work.student.personName %></td>
+      <td><%= work.schoolyear.name %></td>
+      <td><%= work.title %></td>
+      <td><%= work.technique %></td>
+      <td><%= link_to 'Mostrar', work %></td>
+      <td><%= link_to 'Editar', edit_work_path(work) %></td>
+      <td><%= link_to 'Borrar', work, :confirm => '¿Está seguro que quiere borrar esta obra?', :method => :delete %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+ 
+<br />
+ 
+<%= link_to 'Nueva obra', new_work_path %>

@@ -1,0 +1,26 @@
+<p>
+  <b>Nombre:</b>
+  <%= @group.name %>
+</p>
+
+<p>
+  <b>Hora de Inicio:</b>
+  <%= @group.schedule.strftime("%I:%M %P") %>
+</p>
+
+<p>
+  <b>Días</b>
+  <%= @group.daysString %>
+</p>
+
+<p>
+  <b>Ciclo Escolar:</b>
+  <%= @group.schoolyear.name %>
+</p>
+ 
+ 
+<%= link_to 'Editar', edit_group_path(@group) %>
+
+<% if check_admin %>
+	| <%= link_to 'Grupos', groups_path %>
+<% end %>

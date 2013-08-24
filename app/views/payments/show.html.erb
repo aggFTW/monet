@@ -1,0 +1,36 @@
+<p>
+  <b>Alumno:</b>
+  <%= @payment.student.personName %>
+</p>
+
+<p>
+  <b>Cargo:</b>
+  <%= @payment.charge.name %>
+</p>
+
+<p>
+  <b>Fecha de Pago:</b>
+  <%= @payment.dateof %>
+</p>
+
+<p>
+  <b>Cantidad:</b>
+  <%= @payment.amount %>
+</p>
+
+<p>
+  <b>Tipo:</b>
+  <%= @payment.ptype %>
+</p>
+
+<p>
+  <b>Comentarios:</b>
+  <%= @payment.comment %>
+</p>
+ 
+ 
+<%= link_to 'Editar', edit_payment_path(@payment) %>
+
+<% if check_admin %>
+	| <%= link_to 'Pagos', payments_path %>
+<% end %>

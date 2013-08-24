@@ -1,0 +1,33 @@
+<h1>Grupos</h1>
+ 
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Hora de Inicio</th>
+      <th>Días</th>
+      <th>Ciclo Escolar</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+ 
+  <tbody>
+  <% @groups.each do |group| %>
+    <tr>
+      <td><%= group.name %></td>
+      <td><%= group.schedule.strftime("%I:%M %P") %></td>
+      <td><%= group.daysString %></td>
+      <td><%= group.schoolyear.name %></td>
+      <td><%= link_to 'Mostrar', group %></td>
+      <td><%= link_to 'Editar', edit_group_path(group) %></td>
+      <td><%= link_to 'Borrar', group, :confirm => '¿Está seguro que quiere borrar este grupo?', :method => :delete %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+ 
+<br />
+ 
+<%= link_to 'Nuevo grupo', new_group_path %>

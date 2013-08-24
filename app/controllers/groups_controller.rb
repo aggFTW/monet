@@ -1,8 +1,9 @@
 #encoding: utf-8
-class DischargesController < ApplicationController
+class GroupsController < ApplicationController
+
 	def index
 		if check_admin
-			@discharges = Discharge.order('student_id ASC, dateof DESC')
+			@groups = Group.all
 		else
 			flash[:error] = "Acceso restringido."
 			redirect_to(root_path)
@@ -11,7 +12,7 @@ class DischargesController < ApplicationController
 
 	def new
 		if check_admin
-			@discharge = Discharge.new
+			@group = Group.new
 		else
 			flash[:error] = "Acceso restringido."
 			redirect_to(root_path)
@@ -20,15 +21,15 @@ class DischargesController < ApplicationController
 
 	def create
 		if check_admin
-			@discharge = Discharge.new(params[:discharge])
+			@group = Group.new(params[:group])
 		
-			if @discharge.save
-				flash[:notice] = "Se ha dado de baja al alumno."
+			if @group.save
+				flash[:notice] = "Se ha creado un nuevo gasto."
 			else
 				flash[:error] = "Sus datos no son válidos."
 			end
 
-			redirect_to(discharges_path)
+			redirect_to(groups_path)
 		else
 			flash[:error] = "Acceso restringido."
 			redirect_to(root_path)
@@ -38,7 +39,7 @@ class DischargesController < ApplicationController
 
 	def show
 		if check_admin
-			@discharge = Discharge.find(params[:id])
+			@group = Group.find(params[:id])
 		else
 			flash[:error] = "Acceso restringido."
 			redirect_to(root_path)
@@ -47,7 +48,7 @@ class DischargesController < ApplicationController
 
 	def edit
 		if check_admin
-			@discharge = Discharge.find(params[:id])
+			@group = Group.find(params[:id])
 		else
 			flash[:error] = "Acceso restringido."
 			redirect_to(root_path)
@@ -56,15 +57,15 @@ class DischargesController < ApplicationController
 
 	def update
 		if check_admin
-			@discharge = Discharge.find(params[:id])
+			@group = Group.find(params[:id])
 		 
-			if @discharge.update_attributes(params[:discharge])
-				flash[:notice] = 'Los datos de la baja fueron actualizados correctamente.'
+			if @group.update_attributes(params[:group])
+				flash[:notice] = 'Los datos del gasto fueron actualizados correctamente.'
 		    else
-		    	flash[:error] = "No se pudieron actualizar los datos de la baja."
+		    	flash[:error] = "No se pudieron actualizar los datos del gasto."
 		    end
 
-		    redirect_to(@discharge)
+		    redirect_to(@group)
 		else
 			flash[:error] = "Acceso restringido."
 			redirect_to(root_path)
@@ -73,8 +74,8 @@ class DischargesController < ApplicationController
 
 	def destroy
 		if check_admin
-			@discharge = Discharge.find(params[:id])
-			@discharge.destroy
+			@group = Group.find(params[:id])
+			@group.destroy
 
 			redirect_to :action => 'index'
 		else
@@ -82,4 +83,5 @@ class DischargesController < ApplicationController
 			redirect_to(root_path)
 		end
 	end
+	
 end

@@ -1,0 +1,9 @@
+<h1>Editar pago</h1>
+ 
+<%= render 'form' %>
+ 
+<%= link_to 'Mostrar', @payment %> 
+<% if check_admin %>
+	|
+	<%= link_to 'Atrás', payments_path %>
+<% end %>

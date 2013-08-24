@@ -1,0 +1,18 @@
+<%= simple_form_for(@work) do |f| %>
+	<fieldset>
+
+		<%= f.association :student, collection: Student.all, label_method: :personName, value_method: :id, :label => 'Alumno:' %>
+
+		<%= f.association :schoolyear, collection: Schoolyear.order('beginning DESC'), label_method: :name, value_method: :id, :label => 'Ciclo Escolar:' %>
+
+		<%= f.input :title, :label => 'Título' %>
+
+		<%= f.input :technique, :label => 'Técnica' %>
+
+		<div class="control-group">
+			<div class="controls">
+				<%= f.button :submit %>
+			</div>
+		</div>
+	</fieldset>
+<% end %>

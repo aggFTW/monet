@@ -12,7 +12,7 @@ class Address < ActiveRecord::Base
   validates_uniqueness_of :number, :scope => [:street, :zip, :interior]
 
   def to_s
-  	s += self.street + ' ' + self.number
+  	s = self.street + ' ' + self.number
   	unless self.interior.nil? || self.interior == ''
   		s += ', interior ' + self.interior
   	end

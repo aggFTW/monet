@@ -5,6 +5,7 @@
     <tr>
       <th>Nombre</th>
       <th>Escuela</th>
+      <th>Edad</th>
       <th>Tipo de Beca</th>
       <th>Inscripción</th>
       <th>Material</th>
@@ -21,6 +22,7 @@
     <tr>
       <td><%= student.person.name %></td>
       <td><%= student.school %></td>
+      <td><%= student.person.age %></td>
       <td><%= student.sType %></td>
       <% if student.sType != 'NA' %>
         <td><%= student.sInscription %></td>

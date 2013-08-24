@@ -1,0 +1,37 @@
+<h1>Pagos</h1>
+ 
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Alumno</th>
+      <th>Cargo</th>
+      <th>Fecha de Pago</th>
+      <th>Cantidad</th>
+      <th>Tipo</th>
+      <th>Comentarios</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+ 
+  <tbody>
+  <% @payments.each do |payment| %>
+    <tr>
+      <td><%= payment.student.personName %></td>
+      <td><%= payment.charge.name %></td>
+      <td><%= payment.dateof %></td>
+      <td><%= payment.amount %></td>
+      <td><%= payment.ptype %></td>
+      <td><%= payment.comment %></td>
+      <td><%= link_to 'Mostrar', payment %></td>
+      <td><%= link_to 'Editar', edit_payment_path(payment) %></td>
+      <td><%= link_to 'Borrar', payment, :confirm => '¿Está seguro que quiere borrar este pago?', :method => :delete %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+ 
+<br />
+ 
+<%= link_to 'Nuevo pago', new_payment_path %>

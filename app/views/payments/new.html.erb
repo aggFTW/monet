@@ -1,0 +1,11 @@
+	<h1>Registro de nuevo pago</h1>
+
+	<%= render 'form' %>
+
+	<% if @payment.errors.any? %>
+		<ul>
+			<% for message_error in @payment.errors.full_messages %>
+			<li>- <%= message_error %></li>
+			<% end %>
+		</ul>
+	<% end %>

@@ -1,0 +1,55 @@
+<%= simple_form_for(@group) do |f| %>
+	<fieldset>
+
+		<%= f.input :name, :label => 'Nombre:' %>
+
+		<%= f.input :schedule, :label => 'Horario de Inicio:' %>
+
+		<%= label_tag "tag1", "Días de Clase:" %>
+
+		<%= f.label :mo do %>
+		  <%= f.check_box :mo %>
+		  Lunes
+		<% end %>
+
+		<%= f.label :tu do %>
+		  <%= f.check_box :tu %>
+		  Martes
+		<% end %>
+
+		<%= f.label :we do %>
+		  <%= f.check_box :we %>
+		  Miércoles
+		<% end %>
+
+		<%= f.label :th do %>
+		  <%= f.check_box :th %>
+		  Jueves
+		<% end %>
+
+		<%= f.label :fr do %>
+		  <%= f.check_box :fr %>
+		  Viernes
+		<% end %>
+
+		<%= f.label :sa do %>
+		  <%= f.check_box :sa %>
+		  Sábado
+		<% end %>
+
+		<%= f.label :su do %>
+		  <%= f.check_box :su %>
+		  Domingo
+		<% end %>
+		<br />
+		
+
+		<%= f.association :schoolyear, collection: Schoolyear.all, label_method: :name, value_method: :id, :label => 'Ciclo Escolar:' %>
+
+		<div class="control-group">
+			<div class="controls">
+				<%= f.button :submit %>
+			</div>
+		</div>
+	</fieldset>
+<% end %>
