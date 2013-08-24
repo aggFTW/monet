@@ -1,0 +1,29 @@
+<%= simple_form_for(@classi) do |f| %>
+	<fieldset>
+
+  		<%= f.input :timeof, :label => 'Hora de la Clase:' %>
+
+  		<%= label_tag "tag1", "Fecha de la Clase:" %>
+		<%= text_field nil, nil, {:class => 'date_picker', :id => "classi_datedof", :name => 'classi[dateof]', :required => 'required'} %>
+		<%= f.association :group, collection: Group.all, label_method: :name, value_method: :id, :label => 'Grupo:' %>
+
+
+		
+		<%= f.input :employee_ids, as: :check_boxes, collection: Employee.all.collect {|x| [x.to_s, x.id]}, :label => 'Empleados:' %>
+
+
+
+		<% label_tag "tag2", "Empleados:" %>
+		<% f.select :employee_ids, Employee.all.collect {|x| [x.to_s, x.id]}, {}, :multiple => true %>
+
+		<%= label_tag "tag2", "Alumnos:" %>
+		<%= f.select :student_ids, Student.all.collect {|x| [x.personName, x.id]}, {}, :multiple => true %>
+
+
+		<div class="control-group">
+			<div class="controls">
+				<%= f.button :submit %>
+			</div>
+		</div>
+	</fieldset>
+<% end %>

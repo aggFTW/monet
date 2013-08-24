@@ -1,0 +1,47 @@
+<h1>Clases</h1>
+ 
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Hora</th>
+      <th>Grupo</th>
+      <!-- <th>Empleados</th> -->
+      <!-- <th>Alumnos</th> -->
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+ 
+  <tbody>
+  <% @classis.each do |classi| %>
+    <tr>
+      <td><%= classi.dateof %></td>
+      <td><%= classi.timeof.strftime("%I:%M %P") %></td>
+      <td><%= classi.group.name %></td>
+      <!-- <td>
+        <ul>
+          <% for e in classi.employees %>
+            <li><%= e.to_s %></li>
+          <% end %>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <% for e in classi.students %>
+            <li><%= e.personName %></li>
+          <% end %>
+        </ul>
+      </td> -->
+      <td><%= link_to 'Mostrar', classi %></td>
+      <td><%= link_to 'Editar', edit_classi_path(classi) %></td>
+      <td><%= link_to 'Borrar', classi, :confirm => '¿Está seguro que quiere borrar esta clase?', :method => :delete %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+ 
+<br />
+ 
+<%= link_to 'Nueva clase', new_classi_path %>

@@ -1,0 +1,11 @@
+	<h1>Tomar asistencia</h1>
+
+	<%= render 'form' %>
+
+	<% if @classi.errors.any? %>
+		<ul>
+			<% for message_error in @classi.errors.full_messages %>
+			<li>- <%= message_error %></li>
+			<% end %>
+		</ul>
+	<% end %>

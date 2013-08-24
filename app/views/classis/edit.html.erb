@@ -1,0 +1,9 @@
+<h1>Modificar asistencia</h1>
+ 
+<%= render 'form' %>
+ 
+<%= link_to 'Mostrar', @classi %> 
+<% if check_admin %>
+	|
+	<%= link_to 'Atrás', classis_path %>
+<% end %>

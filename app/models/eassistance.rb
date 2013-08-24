@@ -6,6 +6,4 @@ class Eassistance < ActiveRecord::Base
   belongs_to :classi
   belongs_to :employee
 
-  validates :classi, :presence => true
-  validates :employee, :presence => true
 end

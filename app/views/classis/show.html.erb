@@ -1,0 +1,31 @@
+<p>
+  <b>Fecha:</b>
+  <%= @classi.dateof %>
+</p>
+
+<p>
+  <b>Hora de Clase:</b>
+  <%= @classi.timeof.strftime("%I:%M %P") %>
+</p>
+
+<p>
+  <b>Grupo:</b>
+  <%= @classi.group.name %>
+</p>
+
+<p>
+  <b>Empleados:</b>
+  <%= @classi.listEmployees %>
+</p>
+
+<p>
+  <b>Estudiantes:</b>
+  <%= @classi.listStudents %>
+</p>
+ 
+ 
+<%= link_to 'Editar', edit_classi_path(@classi) %>
+
+<% if check_admin %>
+	| <%= link_to 'Gastos', classis_path %>
+<% end %>

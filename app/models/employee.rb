@@ -1,7 +1,7 @@
 #encoding: utf-8
 
 class Employee < ActiveRecord::Base
-  has_many :eassistances
+  has_many :eassistances, :dependent => :destroy
   has_many :classis, through: :eassistances
   belongs_to :person
   has_and_belongs_to_many :groups
