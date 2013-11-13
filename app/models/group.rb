@@ -6,7 +6,7 @@ class Group < ActiveRecord::Base
   has_and_belongs_to_many :students
   has_many :classis
 
-  attr_accessible :name, :schedule, :schoolyear, :schoolyear_id, :mo, :tu, :we, :th, :fr, :sa, :su
+  attr_accessible :name, :schedule, :schoolyear, :schoolyear_id, :mo, :tu, :we, :th, :fr, :sa, :su, :student_ids, :employee_ids, :classi_ids
 
   validates :name, :presence => true
   validates :schedule, :presence => true

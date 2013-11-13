@@ -14,7 +14,8 @@
 			:label => 'Tipo',
 			:item_wrapper_class => 'inline'%>
 
-		<%= f.input :student_ids, as: :check_boxes, collection: Student.all.collect {|x| [x.personName, x.id]}, :label => 'Estudiantes:' %>
+		<%= label_tag "tag2", "Cargo para grupos:" %>
+		<%= select_tag 'group_ids[]', options_for_select(Group.all.collect{ |g| [g.name, g.id] }), :multiple => true %>
 
 		<div class="control-group">
 			<div class="controls">

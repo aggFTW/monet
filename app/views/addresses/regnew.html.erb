@@ -1,0 +1,13 @@
+<h1>1. Domicilio de la familia</h1>
+
+<%= render 'reg_form' %>
+
+<%= link_to "Omitir", :controller => "people", :action => "regdadnew" %>
+
+<% if @address.errors.any? %>
+	<ul>
+		<% for message_error in @address.errors.full_messages %>
+		<li>- <%= message_error %></li>
+		<% end %>
+	</ul>
+<% end %>

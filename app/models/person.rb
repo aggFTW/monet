@@ -5,8 +5,6 @@ class Person < ActiveRecord::Base
   belongs_to :user
   belongs_to :dad, :class_name => "Person", :foreign_key => 'dad_id'
   belongs_to :mom, :class_name => "Person", :foreign_key => 'mom_id'
-  has_many :siblingrelations
-  has_many :siblings, :through => :siblingrelations, :class_name => "Person"
 
   attr_accessible :address, :cellr, :dob, :email, :fname, :lname, :dad, :mom, :sex, :user, :dad_id, :mom_id, :address_id
 
@@ -46,4 +44,26 @@ class Person < ActiveRecord::Base
     now = Time.now.utc.to_date
     now.year - self.dob.year - ((now.month > self.dob.month || (now.month == self.dob.month && now.day >= self.dob.day)) ? 0 : 1)
   end
+
+  def siblings
+    fromMom = Person.where(:mom_id => self.mom.id)
+    fromDad = Person.where(:dad_id => self.dad.id)
+
+    siblingsArray = fromMom + fromDad
+
+    return siblingsArray.uniq.remove(self)
+  end
+
+  def hasSiblings
+    if Person.where(:mom_id => self.mom.id).length > 1
+      return true
+    end
+
+    if Person.where(:dad_id => self.dad.id).length > 1
+      return true      
+    end
+
+    return false
+  end
+
 end

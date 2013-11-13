@@ -18,11 +18,31 @@ class ChargesController < ApplicationController
 		end
 	end
 
+	def newgroups
+		if check_admin
+			@charge = Charge.new
+		else
+			flash[:error] = "Acceso restringido."
+			redirect_to(root_path)
+		end
+	end
+
 	def create
 		if check_admin
+
 			@charge = Charge.new(params[:charge])
 		
 			if @charge.save
+				if ! params[:group_ids].nil?
+					groups = params[:group_ids]
+
+					groups.each do |group_id|
+						Group.find(group_id).students.each do |student|
+							@charge.students += [student]
+						end
+					end
+				end
+
 				flash[:notice] = "Se ha creado un nuevo cargo."
 			else
 				flash[:error] = "Sus datos no son válidos."

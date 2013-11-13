@@ -9,10 +9,13 @@ class Student < ActiveRecord::Base
   has_many :works
   has_many :payments
 
-  attr_accessible :person, :sExposition, :sInscription, :sMaterial, :sTuition, :sType, :school, :person_id
+  accepts_nested_attributes_for :person
+
+  attr_accessible :person, :sExposition, :sInscription, :sMaterial, :sTuition, :sType, :school, :person_id, :person_attributes
 
   validates_inclusion_of :sType, in: %w( Hermanos Economica NA )
-  validates :person_id, :presence => true, :uniqueness => true
+  validates :person_id, :presence => true, :uniqueness => true, :unless => "! person.nil?"
+  validates_associated :person
 
   before_save :payments
 

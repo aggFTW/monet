@@ -19,7 +19,11 @@
   <% @payments.each do |payment| %>
     <tr>
       <td><%= payment.student.personName %></td>
-      <td><%= payment.charge.name %></td>
+      <% if payment.charge.nil? %>
+        <td>NA</td>
+      <% else %>
+        <td><%= payment.charge.name %></td>
+      <% end %>
       <td><%= payment.dateof %></td>
       <td><%= payment.amount %></td>
       <td><%= payment.ptype %></td>

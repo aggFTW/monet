@@ -1,0 +1,14 @@
+<script>
+function displayDate()
+{
+	window.location.href = "/class/" + document.getElementById("group_id").value;
+}
+</script>
+
+
+
+<h1>Seleccionar grupo para tomar lista</h1>
+
+<%= select_tag 'group_id', options_for_select(@groups.collect{ |g| [g.name, g.id] }) %>
+<br />
+<button type="button" onclick="displayDate()">Tomar lista</button>

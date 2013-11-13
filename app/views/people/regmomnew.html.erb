@@ -1,6 +1,8 @@
-<h1>Registro de nueva persona</h1>
+<h1>3. Registro de la mamá.</h1>
 
-<%= render 'form' %>
+<%= render 'reg_mom_form' %>
+
+<%= link_to "Omitir", :controller => "students", :action => "regnew" %>
 
 <% if @person.errors.any? %>
 	<ul>

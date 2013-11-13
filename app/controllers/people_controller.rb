@@ -19,17 +19,66 @@ class PeopleController < ApplicationController
 		end
 	end
 
+	def regdadnew
+		if check_admin
+			@person = Person.new
+		else
+			flash[:error] = "Acceso restringido."
+			redirect_to(root_path)
+		end
+	end
+
+	def regmomnew
+		if check_admin
+			@person = Person.new
+		else
+			flash[:error] = "Acceso restringido."
+			redirect_to(root_path)
+		end
+	end
+
 	def create
 		if check_admin
-			@person = Person.new(params[:person])
-		
-			if @person.save
-				flash[:notice] = "Persona creada de manera exitosa."
-			else
-				flash[:error] = "Sus datos no son válidos."
-			end
 
-			redirect_to(people_path)
+			if params[:commit] == "regdad"
+
+				@person = Person.new(params[:person])
+		
+				if @person.save
+					flash[:notice] = "Papá creado de manera exitosa."
+					session[:dad_id] = @person.id
+					redirect_to action: :regmomnew, controller: :people
+				else
+					flash[:error] = "Sus datos no son válidos."
+					redirect_to action: :regdadnew, controller: :people
+				end
+			
+			elsif params[:commit] == "regmom"
+
+				@person = Person.new(params[:person])
+		
+				if @person.save
+					flash[:notice] = "Mamá creada de manera exitosa."
+					session[:mom_id] = @person.id
+					redirect_to action: :regnew, controller: :students
+				else
+					flash[:error] = "Sus datos no son válidos."
+					redirect_to action: :regmomnew, controller: :people
+				end
+
+			else
+
+				@person = Person.new(params[:person])
+			
+				if @person.save
+					flash[:notice] = "Persona creada de manera exitosa."
+				else
+					flash[:error] = "Sus datos no son válidos."
+				end
+
+				redirect_to(people_path)
+
+			end
 		else
 			flash[:error] = "Acceso restringido."
 			redirect_to(root_path)

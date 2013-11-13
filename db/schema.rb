@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130824223204) do
+ActiveRecord::Schema.define(:version => 20131113030043) do
 
   create_table "addresses", :force => true do |t|
     t.string   "number"
@@ -146,11 +146,6 @@ ActiveRecord::Schema.define(:version => 20130824223204) do
     t.float    "stdInscription"
     t.float    "stdMaterial"
     t.float    "stdExposition"
-  end
-
-  create_table "siblingrelations", :force => true do |t|
-    t.integer "person_id"
-    t.integer "sibling_id"
   end
 
   create_table "students", :force => true do |t|

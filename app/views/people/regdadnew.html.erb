@@ -1,6 +1,8 @@
-<h1>Registro de nueva persona</h1>
+<h1>2. Registro del papá.</h1>
 
-<%= render 'form' %>
+<%= render 'reg_dad_form' %>
+
+<%= link_to "Omitir", :controller => "people", :action => "regmomnew" %>
 
 <% if @person.errors.any? %>
 	<ul>

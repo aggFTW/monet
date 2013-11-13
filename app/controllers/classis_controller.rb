@@ -13,6 +13,13 @@ class ClassisController < ApplicationController
 	def new
 		if check_admin
 			@classi = Classi.new
+			@groupSet = false
+
+			if !params[:group_id].blank?
+			  @classi.group = Group.find(params[:group_id])
+			  @groupSet = true
+			end
+
 			# @classi.eassistances.build.build_
 			# @employees = Employee.find(:all, :limit => 2)
 			# 3.times { @classi.employees.build }
@@ -25,7 +32,7 @@ class ClassisController < ApplicationController
 	def create
 		if check_admin
 			@classi = Classi.new(params[:classi])
-		
+
 			if @classi.save!
 				flash[:notice] = "Se ha tomado lista."
 			else
@@ -81,6 +88,15 @@ class ClassisController < ApplicationController
 			@classi.destroy
 
 			redirect_to :action => 'index'
+		else
+			flash[:error] = "Acceso restringido."
+			redirect_to(root_path)
+		end
+	end
+
+	def select
+		if check_admin
+			@groups = Group.all
 		else
 			flash[:error] = "Acceso restringido."
 			redirect_to(root_path)

@@ -7,7 +7,7 @@ Monet::Application.routes.draw do
 
   resources :users, :addresses, :charges, :classis, :discharges, :eassistances
   resources :employees, :expenses, :groups, :payments, :people, :schoolyears
-  resources :students, :works, :siblingrelations
+  resources :students, :works
 
   # See how all your routes lay out with "rake routes"
 
@@ -22,5 +22,12 @@ Monet::Application.routes.draw do
   match "schoolyear/close/:id" => "schoolyears#close"
   match "schoolyear/activate/:id" => "schoolyears#activate"
   match "schoolyear/inscription/:id" => "schoolyears#inscription"
+  match "/registration/address" => "addresses#regnew"
+  match "/registration/dad" => "people#regdadnew"
+  match "/registration/mom" => "people#regmomnew"
+  match "/registration/son" => "students#regnew"
+  match "/class" => "classis#select"
+  match "/class/:group_id" => "classis#new"
+  match "/newchargebygroups" => "charges#newgroups"
   
 end

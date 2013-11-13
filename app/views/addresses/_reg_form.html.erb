@@ -1,0 +1,16 @@
+<%= simple_form_for(@address) do |f| %>
+	<fieldset>
+
+  		<%= f.input :number, :label => 'Número' %>
+  		<%= f.input :street, :label => 'Calle' %>
+  		<%= f.input :interior, :label => 'Interior' %>
+  		<%= f.input :zip, :label => 'C.P.' %>
+  		<%= f.input :neighborhood, :label => 'Colonia' %>
+
+		<div class="control-group">
+			<div class="controls">
+				<%= f.submit 'reg' %>
+			</div>
+		</div>
+	</fieldset>
+<% end %>

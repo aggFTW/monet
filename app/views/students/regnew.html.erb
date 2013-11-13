@@ -1,0 +1,11 @@
+<h1>4. Registro del hijo.</h1>
+
+<%= render 'reg_son_form' %>
+
+<% if @student.errors.any? %>
+	<ul>
+		<% for message_error in @student.errors.full_messages %>
+			<li>- <%= message_error %></li>
+		<% end %>
+	</ul>
+<% end %>

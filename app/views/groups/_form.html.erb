@@ -46,6 +46,9 @@
 
 		<%= f.association :schoolyear, collection: Schoolyear.all, label_method: :name, value_method: :id, :label => 'Ciclo Escolar:' %>
 
+		<%= label_tag "tag2", "Alumnos:" %>
+		<%= f.select :student_ids, Student.all.collect {|x| [x.personName, x.id]}, {}, :multiple => true %>
+
 		<div class="control-group">
 			<div class="controls">
 				<%= f.button :submit %>

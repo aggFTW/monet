@@ -19,17 +19,56 @@ class StudentsController < ApplicationController
 		end
 	end
 
+	def regnew
+		if check_admin
+			@student = Student.new
+			@student.build_person
+		else
+			flash[:error] = "Acceso restringido."
+			redirect_to(root_path)
+		end
+	end
+
 	def create
 		if check_admin
-			@student = Student.new(params[:student])
-		
-			if @student.save
-				flash[:notice] = "Se registró a la persona como estudiante."
-			else
-				flash[:error] = "Sus datos no son válidos."
-			end
 
-			redirect_to(students_path)
+			if params[:commit] == "regsame"
+
+				@student = Student.new(params[:student])
+			
+				if @student.save!
+					flash[:notice] = "Hijo creado de manera exitosa."
+					redirect_to action: :regnew, controller: :students
+				else
+					flash[:error] = "Sus datos no son válidos."
+					redirect_to action: :regnew, controller: :students
+				end
+
+			elsif params[:commit] == "regnext"
+
+				@student = Student.new(params[:student])
+			
+				if @student.save
+					reset_env_vars
+					flash[:notice] = "El proceso de registro ha concluido exitosamente."
+					redirect_to controller: :students, action: :index
+
+				else
+					flash[:error] = "Sus datos no son válidos."
+					redirect_to action: :regnew, controller: :students
+				end
+
+			else
+				@student = Student.new(params[:student])
+			
+				if @student.save
+					flash[:notice] = "Se registró a la persona como estudiante."
+				else
+					flash[:error] = "Sus datos no son válidos."
+				end
+
+				redirect_to(students_path)
+			end
 		else
 			flash[:error] = "Acceso restringido."
 			redirect_to(root_path)

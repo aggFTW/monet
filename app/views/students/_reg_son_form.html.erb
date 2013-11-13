@@ -1,0 +1,31 @@
+<%= simple_form_for(@student) do |f| %>
+	<fieldset>
+
+		<%= render('reg_person_fields', :f => f) %>
+
+	</fieldset>
+	<fieldset>
+  		
+  		<%= f.input :school, :label => 'Escuela' %>
+
+  		<h4>Beca - Montos a pagar</h4>
+  		<%= f.input :sType, 
+			:collection => [['N.A.', 'NA'], ['Hermanos', 'Hermanos'], ['Económica', 'Economica']], 
+			:as => :radio,
+			:label => 'Tipo de beca:',
+			:item_wrapper_class => 'inline'%>
+		<br />
+  		<%= f.input :sInscription, :label => 'Inscripción:' %>
+  		<%= f.input :sMaterial, :label => 'Material:' %>
+  		<%= f.input :sTuition, :label => 'Mensualidad:' %>
+  		<%= f.input :sExposition, :label => 'Exposición:' %>
+  		
+
+		<div class="control-group">
+			<div class="controls">
+				<%= f.submit 'regsame' %>
+				<%= f.submit 'regnext' %>
+			</div>
+		</div>
+	</fieldset>
+<% end %>

@@ -1,0 +1,45 @@
+<%= f.fields_for :person do |fp| %>
+
+	<%= fp.input :fname, :label => 'Nombre' %>
+	<%= fp.input :lname, :label => 'Apellidos' %>
+
+	<%= label_tag "tag1", "Fecha de Nacimiento:" %>
+	<%= text_field nil, nil, {:class => 'date_picker', :id => "student_person_attributes_dob", :name => 'student[person_attributes][dob]', :required => 'required'} %>
+	
+	<%= fp.input :sex, 
+		:collection => [['Femenino', 'f'], ['Masculino', 'm']], 
+		:as => :radio,
+		:label => 'Sexo',
+		:item_wrapper_class => 'inline'%>
+	<br />
+
+	<%= fp.input :cellr, :label => 'Celular' %>
+
+	<%= fp.input :email, :label => 'Email' %>
+
+
+
+
+	<% if session[:dad_id].nil? %>
+		<%= fp.association :dad, collection: Person.where(sex: 'm'), label_method: :name, value_method: :id, :label => 'Papá' %>
+	<% else %>
+		<%= fp.association :dad, collection: Person.where(sex: 'm'), label_method: :name, value_method: :id, :label => 'Papá', :selected => session[:dad_id] %>
+	<% end %>
+
+
+
+	<% if session[:mom_id].nil? %>
+		<%= fp.association :mom, collection: Person.where(sex: 'f'), label_method: :name, value_method: :id, :label => 'Mamá' %>
+	<% else %>
+		<%= fp.association :dad, collection: Person.where(sex: 'f'), label_method: :name, value_method: :id, :label => 'Mamá', :selected => session[:mom_id] %>
+	<% end %>
+
+
+
+	<% if session[:address_id].nil? %>
+		<%= fp.association :address, label_method: :to_s, value_method: :id, :label => 'Dirección'%>
+	<% else %>
+		<%= fp.association :address, label_method: :to_s, value_method: :id, :label => 'Dirección', :selected => session[:address_id] %>
+	<% end %>
+
+<% end %>

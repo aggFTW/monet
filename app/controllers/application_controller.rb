@@ -53,4 +53,10 @@ class ApplicationController < ActionController::Base
 		return false
 	end
 
+	def reset_env_vars
+		session[:address_id] = nil
+		session[:dad_id] = nil
+		session[:mom_id] = nil
+	end
+
 end
