@@ -1,6 +1,6 @@
 <p>
   <b>Nombre:</b>
-  <%= @employee.person.user %>
+  <%= @employee.person.name %>
 </p>
  
 <p>
@@ -16,8 +16,8 @@
 <% end %>
  
  
-<%= link_to 'Editar', edit_user_path(@user) %>
+<%= link_to 'Editar', edit_employee_path(@employee) %>
 
 <% if check_admin %>
-	| <%= link_to 'Empleados', users_path %>
+	| <%= link_to 'Empleados', employees_path %>
 <% end %>

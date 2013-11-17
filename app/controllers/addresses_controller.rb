@@ -30,6 +30,17 @@ class AddressesController < ApplicationController
 		end
 	end
 
+	def regnewemployee
+		if check_admin
+			reset_env_vars			
+
+			@address = Address.new
+		else
+			flash[:error] = "Acceso restringido."
+			redirect_to(root_path)
+		end
+	end
+
 	def create
 		if check_admin
 
@@ -38,12 +49,25 @@ class AddressesController < ApplicationController
 				@address = Address.new(params[:address])
 		
 				if @address.save
-					flash[:notice] = "Se creó exitosamente el domicilio!!!."
+					flash[:notice] = "Se creó exitosamente el domicilio."
 					session[:address_id] = @address.id
 					redirect_to action: :regdadnew, controller: :people
 				else
-					flash[:error] = "Sus datos no son válidos.!!!"
+					flash[:error] = "Sus datos no son válidos."
 					redirect_to action: :regnew, controller: :addresses
+				end
+
+			elsif params[:commit] == "regemployee"
+				
+				@address = Address.new(params[:address])
+		
+				if @address.save!
+					flash[:notice] = "Se creó exitosamente el domicilio."
+					session[:address_id] = @address.id
+					redirect_to action: :regemployee, controller: :people
+				else
+					flash[:error] = "Sus datos no son válidos."
+					redirect_to action: :regnewemployee, controller: :addresses
 				end
 			
 			else

@@ -37,6 +37,15 @@ class PeopleController < ApplicationController
 		end
 	end
 
+	def regemployee
+		if check_admin
+			@person = Person.new
+		else
+			flash[:error] = "Acceso restringido."
+			redirect_to(root_path)
+		end
+	end
+
 	def create
 		if check_admin
 
@@ -65,6 +74,19 @@ class PeopleController < ApplicationController
 					flash[:error] = "Sus datos no son válidos."
 					redirect_to action: :regmomnew, controller: :people
 				end
+
+			elsif params[:commit] == "regemployee"
+
+				@person = Person.new(params[:person])
+		
+				if @person.save
+					flash[:notice] = "Datos de empleado guardados."
+					session[:employee_person_id] = @person.id
+					redirect_to action: :new, controller: :employees
+				else
+					flash[:error] = "Sus datos no son válidos."
+					redirect_to action: :regemployee, controller: :people
+				end			
 
 			else
 

@@ -1,0 +1,34 @@
+<%= simple_form_for(@person) do |f| %>
+	<fieldset>
+
+		<%= f.input :fname, :label => 'Nombre' %>
+		<%= f.input :lname, :label => 'Apellidos' %>
+
+		<%= label_tag "tag1", "Fecha de Nacimiento:" %>
+		<%= text_field nil, nil, {:class => 'date_picker', :id => "person_dob", :name => 'person[dob]', :required => 'required'} %>
+		
+		<%= f.input :sex, 
+			:collection => [['Femenino', 'f'], ['Masculino', 'm']], 
+			:as => :radio,
+			:label => 'Sexo',
+			:item_wrapper_class => 'inline'%>
+		<br />
+
+		<%= f.input :cellr, :label => 'Celular' %>
+
+		<%= f.input :email, :label => 'Email' %>
+
+		<% if session[:address_id].nil? %>
+			<%= f.association :address, label_method: :to_s, value_method: :id, :label => 'Dirección'%>
+		<% else %>
+			<%= f.association :address, label_method: :to_s, value_method: :id, :label => 'Dirección', :selected => session[:address_id] %>
+		<% end %>
+
+
+		<div class="control-group">
+			<div class="controls">
+				<%= f.submit 'regemployee' %>
+			</div>
+		</div>
+	</fieldset>
+<% end %>

@@ -19,17 +19,27 @@ class EmployeesController < ApplicationController
 		end
 	end
 
+	# def regnew
+	# 	if check_admin
+	# 		@employee = Employee.new
+	# 	else
+	# 		flash[:error] = "Acceso restringido."
+	# 		redirect_to(root_path)
+	# 	end
+	# end
+
 	def create
 		if check_admin
 			@employee = Employee.new(params[:employee])
 		
 			if @employee.save
 				flash[:notice] = "La persona tiene ahora un nuevo rol como empleado."
+				reset_env_vars
+				redirect_to controller: :employees, action: :index
 			else
 				flash[:error] = "Sus datos no son válidos."
+				redirect_to controller: :employees, action: :new
 			end
-
-			redirect_to(employees_path)
 		else
 			flash[:error] = "Acceso restringido."
 			redirect_to(root_path)
