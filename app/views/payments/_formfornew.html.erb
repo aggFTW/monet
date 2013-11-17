@@ -1,9 +1,26 @@
+<script>
+  $(document).ready(function() {
+    $('#students_select').change(function() {
+      $.ajax({
+        url: "/charges_by_student",
+        data: {
+          student_id : $('#students_select').val()
+        },
+        dataType: "script"
+      });
+    });
+  });
+</script>
+
 <%= simple_form_for(@payment) do |f| %>
 	<fieldset>
 
-		<%= f.association :student, collection: [@payment.student], label_method: :personName, value_method: :id, :label => 'Alumno:' %>
+		<%= label_tag "tag1000", "Alumno:" %>
+		<%= collection_select(nil, :student_id,  Student.all, :id, :personName, {:prompt   => "Seleccione un alumno"}, {:id => 'students_select'}) %>
+		<br />
 
-		<%= f.association :charge, collection: @payment.student.charges, label_method: :name, value_method: :id, :label => 'Cargo:' %>
+		<%= label_tag "tag1100", "Cargo:" %>
+		<%= collection_select(nil, :charge_id, @charges, :id, :name, {:id => 'charges_select'}) %>
 
 		<%= label_tag "tag1", "Fecha de Pago:" %>
 		<%= text_field nil, nil, {:class => 'date_picker', :id => "payment_dateof", :name => 'payment[dateof]', :required => 'required'} %>

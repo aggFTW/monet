@@ -31,122 +31,13 @@
 
 			<div class="btn-group" style="display:inline-block;">
 				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-					Personas
+					Admin
 					<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu">
-					<li><%= link_to "Lista de Personas", :controller => "people", :action => "index" %></li>
-					<li><%= link_to "Nueva Persona", :controller => "people", :action => "new" %></li>
-				</ul>
-			</div>
-
-  			<div class="btn-group" style="display:inline-block;">
-				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-					Usuarios
-					<span class="caret"></span>
-				</a>
-				<ul class="dropdown-menu">
-					<li><%= link_to "Lista de Usuarios", :controller => "users", :action => "index" %></li>
-					<li><%= link_to "Nuevo Usuario", :controller => "users", :action => "new" %></li>
-				</ul>
-			</div>
-
-			<div class="btn-group" style="display:inline-block;">
-				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-					Empleados
-					<span class="caret"></span>
-				</a>
-				<ul class="dropdown-menu">
-					<li><%= link_to "Lista de Empleados", :controller => "employees", :action => "index" %></li>
-					<li><%= link_to "Nuevo Empleado", :controller => "employees", :action => "new" %></li>
-				</ul>
-			</div>
-
-			<div class="btn-group" style="display:inline-block;">
-				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-					Alumnos
-					<span class="caret"></span>
-				</a>
-				<ul class="dropdown-menu">
-					<li><%= link_to "Lista de Alumnos", :controller => "students", :action => "index" %></li>
-					<li><%= link_to "Nuevo Alumno", :controller => "students", :action => "new" %></li>
-				</ul>
-			</div>
-
-			<div class="btn-group" style="display:inline-block;">
-				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-					Ciclos
-					<span class="caret"></span>
-				</a>
-				<ul class="dropdown-menu">
-					<li><%= link_to "Lista de Ciclos", :controller => "schoolyears", :action => "index" %></li>
-					<li><%= link_to "Nuevo Ciclo", :controller => "schoolyears", :action => "new" %></li>
-				</ul>
-			</div>
-
-			<div class="btn-group" style="display:inline-block;">
-				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-					Domicilios
-					<span class="caret"></span>
-				</a>
-				<ul class="dropdown-menu">
-					<li><%= link_to "Lista de Domicilios", :controller => "addresses", :action => "index" %></li>
-					<li><%= link_to "Nuevo Domicilio", :controller => "addresses", :action => "new" %></li>
-				</ul>
-			</div>
-
-			<div class="btn-group" style="display:inline-block;">
-				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-					Cargos
-					<span class="caret"></span>
-				</a>
-				<ul class="dropdown-menu">
-					<li><%= link_to "Lista de Cargos", :controller => "charges", :action => "index" %></li>
-					<li><%= link_to "Nuevo Cargo", :controller => "charges", :action => "new" %></li>
-				</ul>
-			</div>
-
-			<div class="btn-group" style="display:inline-block;">
-				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-					Gastos
-					<span class="caret"></span>
-				</a>
-				<ul class="dropdown-menu">
-					<li><%= link_to "Lista de Gastos", :controller => "expenses", :action => "index" %></li>
-					<li><%= link_to "Nuevo Gasto", :controller => "expenses", :action => "new" %></li>
-				</ul>
-			</div>
-
-			<div class="btn-group" style="display:inline-block;">
-				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-					Bajas
-					<span class="caret"></span>
-				</a>
-				<ul class="dropdown-menu">
-					<li><%= link_to "Lista de Bajas", :controller => "discharges", :action => "index" %></li>
-					<li><%= link_to "Nueva Baja", :controller => "discharges", :action => "new" %></li>
-				</ul>
-			</div>
-
-			<div class="btn-group" style="display:inline-block;">
-				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-					Obras
-					<span class="caret"></span>
-				</a>
-				<ul class="dropdown-menu">
-					<li><%= link_to "Lista de Obras", :controller => "works", :action => "index" %></li>
-					<li><%= link_to "Nueva Obra", :controller => "works", :action => "new" %></li>
-				</ul>
-			</div>
-
-			<div class="btn-group" style="display:inline-block;">
-				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-					Pagos
-					<span class="caret"></span>
-				</a>
-				<ul class="dropdown-menu">
-					<li><%= link_to "Lista de Pagos", :controller => "payments", :action => "index" %></li>
-					<li><%= link_to "Nuevo Pago", :controller => "payments", :action => "new" %></li>
+					<li><%= link_to "Usuarios", :controller => "users", :action => "index" %></li>
+					<li><%= link_to "Empleados", :controller => "employees", :action => "index" %></li>
+					<li><%= link_to "Ciclos", :controller => "schoolyears", :action => "index" %></li>
 				</ul>
 			</div>
 
@@ -156,8 +47,21 @@
 					<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu">
-					<li><%= link_to "Lista de Grupos", :controller => "groups", :action => "index" %></li>
+					<li><%= link_to "Grupos", :controller => "groups", :action => "index" %></li>
 					<li><%= link_to "Nuevo Grupo", :controller => "groups", :action => "new" %></li>
+				</ul>
+			</div>
+
+			<div class="btn-group" style="display:inline-block;">
+				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+					Alumnos
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li><%= link_to "Alumnos", :controller => "students", :action => "index" %></li>
+					<li><%= link_to "Nuevo Alumno", :controller => "addresses", :action => "regnew" %></li>
+					<li><%= link_to "Lista de Obras", :controller => "works", :action => "index" %></li>
+					<li><%= link_to "Bajas", :controller => "discharges", :action => "index" %></li>
 				</ul>
 			</div>
 
@@ -167,8 +71,42 @@
 					<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu">
-					<li><%= link_to "Lista de Clases", :controller => "classis", :action => "index" %></li>
-					<li><%= link_to "Nueva Clase", :controller => "classis", :action => "new" %></li>
+					<li><%= link_to "Clases", :controller => "classis", :action => "index" %></li>
+					<li><%= link_to "Tomar lista", :controller => "classis", :action => "select" %></li>
+				</ul>
+			</div>
+
+			<div class="btn-group" style="display:inline-block;">
+				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+					Cuentas
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li class="dropdown-submenu">
+						<a tabindex="-1" href="#">Cargos</a>
+						<ul class="dropdown-menu">
+							<li><%= link_to "Cargos", :controller => "charges", :action => "index" %></li>
+							<li><%= link_to "Nuevo Cargo", :controller => "charges", :action => "newgroups" %></li>
+						</ul>
+					</li>
+					<li class="dropdown-submenu">
+						<a tabindex="-1" href="#">Gastos</a>
+						<ul class="dropdown-menu">
+							<li><%= link_to "Gastos", :controller => "expenses", :action => "index" %></li>
+							<li><%= link_to "Nuevo Gasto", :controller => "expenses", :action => "new" %></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+
+			<div class="btn-group" style="display:inline-block;">
+				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+					Pagos
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li><%= link_to "Pagos", :controller => "payments", :action => "index" %></li>
+					<li><%= link_to "Nuevo Pago", :controller => "payments", :action => "new" %></li>
 				</ul>
 			</div>
 

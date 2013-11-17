@@ -5,10 +5,10 @@
 
 <p>
   <b>Cargo:</b>
-  <% if payment.charge.nil? %>
+  <% if @payment.charge.nil? %>
     <td>NA</td>
   <% else %>
-    <td><%= payment.charge.name %></td>
+    <td><%= @payment.charge.name %></td>
   <% end %>
 </p>
 

@@ -1,0 +1,1 @@
+$('#_charge_id').html("<%= escape_javascript(options_for_select(@charges.map { |c| [c.name, c.id] } )) %>");

@@ -29,5 +29,6 @@ Monet::Application.routes.draw do
   match "/class" => "classis#select"
   match "/class/:group_id" => "classis#new"
   match "/newchargebygroups" => "charges#newgroups"
+  match '/charges_by_student' => 'students#charges_by_student'
   
 end

@@ -12,6 +12,7 @@ class PaymentsController < ApplicationController
 
 	def new
 		if check_admin
+			@charges = []
 			@payment = Payment.new
 		else
 			flash[:error] = "Acceso restringido."
@@ -22,8 +23,10 @@ class PaymentsController < ApplicationController
 	def create
 		if check_admin
 			@payment = Payment.new(params[:payment])
+			@payment.student = Student.find(params[:student_id])
+			@payment.charge = Charge.find(params[:charge_id])
 		
-			if @payment.save
+			if @payment.save!
 				flash[:notice] = "Se ha registrado el pago."
 			else
 				flash[:error] = "Sus datos no son válidos."
@@ -35,7 +38,6 @@ class PaymentsController < ApplicationController
 			redirect_to(root_path)
 		end
 	end
-
 
 	def show
 		if check_admin
@@ -49,6 +51,7 @@ class PaymentsController < ApplicationController
 	def edit
 		if check_admin
 			@payment = Payment.find(params[:id])
+			@charges = @payment.student.charges
 		else
 			flash[:error] = "Acceso restringido."
 			redirect_to(root_path)
@@ -58,6 +61,7 @@ class PaymentsController < ApplicationController
 	def update
 		if check_admin
 			@payment = Payment.find(params[:id])
+			@charges = Charge.all
 		 
 			if @payment.update_attributes(params[:payment])
 				flash[:notice] = 'Los datos del pago fueron actualizados correctamente.'
@@ -83,5 +87,4 @@ class PaymentsController < ApplicationController
 			redirect_to(root_path)
 		end
 	end
-
 end

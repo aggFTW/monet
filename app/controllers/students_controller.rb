@@ -123,4 +123,7 @@ class StudentsController < ApplicationController
 		end
 	end
 
+	def charges_by_student
+	  @charges = Student.find(params[:student_id]).charges
+	end
 end
