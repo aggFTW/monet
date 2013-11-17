@@ -9,7 +9,7 @@
   		<%= f.input :amount, :label => 'Cantidad:' %>
 
   		<%= f.input :etype, 
-			:collection => [['Renta', 'Renta'], ['Servicios', 'Servicios'], ['Material', 'Material'], ['Sueldos', 'Sueldos'], ['Impuestos', 'Impuestos']],
+			:collection => [['Renta', 'Renta'], ['Servicios', 'Servicios'], ['Material', 'Material'], ['Sueldos', 'Sueldos'], ['Impuestos', 'Impuestos'], ['Otro', 'Otro']],
 			:as => :radio,
 			:label => 'Tipo:',
 			:item_wrapper_class => 'inline'%>

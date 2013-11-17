@@ -1,0 +1,114 @@
+<%
+positive = 0
+negative = 0
+ %>
+
+<h1><%= @incomeStatement[:name] %></h1>
+Total de estudiantes: <%= @incomeStatement[:totalStudents] %>
+<br /><br /><br />
+<table class="table table-bordered table-hover">
+	<tr>
+		<th>Concepto</th>
+		<th>Positivo</th>
+		<th>Negativo</th>
+	</tr>
+	<tr class="success">
+		<% positive += @incomeStatement[:incomeInscriptions] %>
+		<td>Inscripciones</td>
+		<td><%= @incomeStatement[:incomeInscriptions] %></td>
+		<td></td>
+	</tr>
+	<tr class="success">
+		<% positive += @incomeStatement[:incomeMaterial] %>
+		<td>Material</td>
+		<td><%= @incomeStatement[:incomeMaterial] %></td>
+		<td></td>
+	</tr>
+	<tr class="success">
+		<% positive += @incomeStatement[:incomeTuition] %>
+		<td>Colegiaturas</td>
+		<td><%= @incomeStatement[:incomeTuition] %></td>
+		<td></td>
+	</tr>
+	<tr class="success">
+		<% positive += @incomeStatement[:incomeExposition] %>
+		<td>Exposición</td>
+		<td><%= @incomeStatement[:incomeExposition] %></td>
+		<td></td>
+	</tr>
+	<tr class="error">
+		<% negative += @incomeStatement[:discountInscriptions] %>
+		<td>Becas Inscripción</td>
+		<td></td>
+		<td><%= @incomeStatement[:discountInscriptions] %></td>
+	</tr>
+	<tr class="error">
+		<% negative += @incomeStatement[:discountMaterial] %>
+		<td>Becas Material</td>
+		<td></td>
+		<td><%= @incomeStatement[:discountMaterial] %></td>
+	</tr>
+	<tr class="error">
+		<% negative += @incomeStatement[:discountTuition] %>
+		<td>Becas Colegiatura</td>
+		<td></td>
+		<td><%= @incomeStatement[:discountTuition] %></td>
+	</tr>
+	<tr class="error">
+		<% negative += @incomeStatement[:discountExposition] %>
+		<td>Becas Exposición</td>
+		<td></td>
+		<td><%= @incomeStatement[:discountExposition] %></td>
+	</tr>
+	<tr class="error">
+		<% negative += @incomeStatement[:notPayed] %>
+		<td>Cuentas por cobrar</td>
+		<td></td>
+		<td><%= @incomeStatement[:notPayed] %></td>
+	</tr>
+	<tr class="error">
+		<% negative += @incomeStatement[:expensesRent] %>
+		<td>Renta</td>
+		<td></td>
+		<td><%= @incomeStatement[:expensesRent] %></td>
+	</tr>
+	<tr class="error">
+		<% negative += @incomeStatement[:expensesServices] %>
+		<td>Servicios</td>
+		<td></td>
+		<td><%= @incomeStatement[:expensesServices] %></td>
+	</tr>
+	<tr class="error">
+		<% negative += @incomeStatement[:expensesMaterial] %>
+		<td>Compra de Material</td>
+		<td></td>
+		<td><%= @incomeStatement[:expensesMaterial] %></td>
+	</tr>
+	<tr class="error">
+		<% negative += @incomeStatement[:expensesSalaries] %>
+		<td>Salarios</td>
+		<td></td>
+		<td><%= @incomeStatement[:expensesSalaries] %></td>
+	</tr>
+	<tr class="error">
+		<% negative += @incomeStatement[:expensesTaxes] %>
+		<td>Impuestos</td>
+		<td></td>
+		<td><%= @incomeStatement[:expensesTaxes] %></td>
+	</tr>
+	<tr class="error">
+		<% negative += @incomeStatement[:expensesOther] %>
+		<td>Gastos varios</td>
+		<td></td>
+		<td><%= @incomeStatement[:expensesOther] %></td>
+	</tr>
+	<tr class="info">
+		<td>Totales</td>
+		<td><%= positive %></td>
+		<td><%= negative %></td>
+	</tr>
+	<tr class="info">
+		<td>Total</td>
+		<td colspan="2"><%= positive - negative %></td>
+	</tr>
+</table>

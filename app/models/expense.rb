@@ -9,6 +9,6 @@ class Expense < ActiveRecord::Base
   					 :numericality => { :greater_than => 0 }
   validates :description, :presence => true
   validates :dateof, :presence => true
-  validates_inclusion_of :etype, in: %w( Renta Servicios Material Sueldos Impuestos ), :presence => true
+  validates_inclusion_of :etype, in: %w( Renta Servicios Material Sueldos Impuestos Otro ), :presence => true
   validates :employee, :presence => true
 end

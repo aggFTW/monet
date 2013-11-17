@@ -14,6 +14,6 @@ class Schoolyear < ActiveRecord::Base
   validates :stdTuitionSiblings, :presence => true
   validates :stdInscription, :presence => true
   validates :stdMaterial, :presence => true
-  # validates :stdExposition, :presence => true
+  validates :stdExposition, :presence => true
 
 end
