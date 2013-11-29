@@ -43,5 +43,6 @@ Monet::Application.routes.draw do
   match "incomestatementyear", to: "reports#incomeStatementYear"
   match "incomestatementmonth", to: "reports#incomeStatementMonth"
   match "incomestatementmonth/:month", to: "reports#incomeStatementMonth"
+  match "notpayedschoolyear", to: "reports#notPayedSchoolyear"
   match "error", to: "reports#error"
 end

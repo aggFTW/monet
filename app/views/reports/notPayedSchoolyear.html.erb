@@ -1,0 +1,38 @@
+<% 
+#[student_id, Charge, amount owed]
+
+familyKeys = Hash.new
+numberFamily = 0
+payFamily = Hash.new
+
+for lp in @latePayments
+	student = Student.find(lp[0])
+	charge = lp[1]
+	amount = lp[2]
+	familyKeys, numberFamily, famKey = getFamilyKey(familyKeys, numberFamily, student.person.dad, student.person.mom)
+
+	if payFamily.key?(famKey)
+		payFamily[famKey][student] = payFamily[famKey].fetch(student, []) << [charge, amount]
+	else
+		payFamily[famKey] = Hash.new
+		payFamily[famKey][student] = [[charge, amount]]
+	end
+end
+
+%>
+
+<% for famKey in payFamily.keys %>
+
+	<h1>Familia <%= famKey %></h1>
+
+	<% for student in payFamily[famKey].keys %>
+
+		<h3>Estudiante <%= student.personName %></h3>
+
+		<% for charge, amount in payFamily[famKey][student] %>
+			<h4><%= charge.name %> - $ <%= amount %></h4>
+		<% end %>				
+
+	<% end %>
+
+<% end %>

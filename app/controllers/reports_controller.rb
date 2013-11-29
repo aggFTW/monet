@@ -52,6 +52,23 @@ class ReportsController < ApplicationController
 		end
 	end
 
+	def notPayedSchoolyear
+		if check_admin
+			schoolyear = Schoolyear.where("state = ?", "Activo").all
+
+			if schoolyear.length == 1
+				schoolyear = schoolyear.first
+				
+				@latePayments = notPayedDates(schoolyear, schoolyear.beginning, schoolyear.end)
+			else
+				redirect_to controller: :reports, action: :error, :message => "No hay sólo 1 ciclo escolar activo. Cierre los ciclos escolares pasados para poder accesar a las cuentas por cobrar de este ciclo o abra un ciclo escolar."
+			end
+		else
+			flash[:error] = "Acceso restringido."
+			redirect_to(root_path)			
+		end
+	end
+
 
 
 
@@ -71,7 +88,7 @@ class ReportsController < ApplicationController
 		incomeStatement[:incomeExposition] = pays[:exposition]
 		incomeStatement[:incomeOther] = pays[:other]
 
-		incomeStatement[:notPayed] = notPayedDates(schoolyear, firstDay, lastDay)
+		incomeStatement[:notPayed] = notPayedDates(schoolyear, firstDay, lastDay).map { |e| e[2] }.inject(0, :+)
 
 		exps = expenses(firstDay, lastDay)
 		incomeStatement[:expensesRent] = exps[:rent]
@@ -116,7 +133,7 @@ class ReportsController < ApplicationController
 		incomeStatement[:incomeExposition] = pays[:exposition]
 		incomeStatement[:incomeOther] = pays[:other]
 
-		incomeStatement[:notPayed] = notPayedDates(schoolyear, firstDay, lastDay)
+		incomeStatement[:notPayed] = notPayedDates(schoolyear, firstDay, lastDay).map { |e| e[2] }.inject(0, :+)
 
 		exps = expenses(firstDay, lastDay)
 		incomeStatement[:expensesRent] = exps[:rent]
@@ -213,7 +230,7 @@ class ReportsController < ApplicationController
 		notPayedOneLayer = []
 		notPayedThreeLayers.each{ |e| e.each{ |f| notPayedOneLayer << f } }
 
-		return notPayedOneLayer.map { |e| e[2] }.inject(0, :+)
+		return notPayedOneLayer
 	end
 
 	def notPayedStudentDates(student, startDate, endDate)
