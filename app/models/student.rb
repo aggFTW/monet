@@ -32,4 +32,24 @@ class Student < ActiveRecord::Base
     return self.person.name
   end
 
+  def dischargedInSchoolyear(schoolyear)
+    for d in self.discharges
+      if schoolyear.dateInSchoolyear(d.dateof)
+        return true
+      end
+    end
+    
+    return false
+  end
+
+  def dischargedBy(cutoffDate)
+    for d in self.discharges
+      if cutoffDate > d.dateof
+        return true
+      end
+    end
+
+    return false
+  end
+
 end

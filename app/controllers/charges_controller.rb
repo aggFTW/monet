@@ -31,14 +31,48 @@ class ChargesController < ApplicationController
 		if check_admin
 
 			@charge = Charge.new(params[:charge])
+
+			if @charge.students.length == 1
+				if @charge.ctype == "Inscripcion"
+					@charge.amount = @charge.students.first.sInscription
+				elsif @charge.ctype == "Colegiatura"
+					@charge.amount = @charge.students.first.sTuition
+				elsif @charge.ctype == "Exposicion"
+					@charge.amount = @charge.students.first.sExposition
+				elsif @charge.ctype == "Material"
+					@charge.amount = @charge.students.first.sMaterial
+				end
+			end
 		
 			if @charge.save
 				if ! params[:group_ids].nil?
 					groups = params[:group_ids]
 
 					groups.each do |group_id|
-						Group.find(group_id).students.each do |student|
-							@charge.students += [student]
+						Group.find(group_id).activeStudents.each do |student|
+							if student.sInscription != 0 && @charge.ctype == "Inscripcion"
+								@newCharge = Charge.new(params[:charge])
+								@newCharge.amount = student.sInscription
+								@newCharge.students += student
+								@newCharge.save
+							elsif student.sTuition != 0 && @charge.ctype == "Colegiatura"
+								@newCharge = Charge.new(params[:charge])
+								@newCharge.amount = student.sTuition
+								@newCharge.students += student
+								@newCharge.save
+							elsif student.sExposition != 0 && @charge.ctype == "Exposicion"
+								@newCharge = Charge.new(params[:charge])
+								@newCharge.amount = student.sExposition
+								@newCharge.students += student
+								@newCharge.save
+							elsif student.sMaterial != 0 && @charge.ctype == "Material"
+								@newCharge = Charge.new(params[:charge])
+								@newCharge.amount = student.sMaterial
+								@newCharge.students += student
+								@newCharge.save
+							else
+								@charge.students += [student]
+							end
 						end
 					end
 				end

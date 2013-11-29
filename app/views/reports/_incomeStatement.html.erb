@@ -1,0 +1,152 @@
+<%
+income = 0
+expenses = 0
+ %>
+
+<h1><%= @incomeStatement[:name] %></h1>
+<h4>Total de estudiantes: <%= @incomeStatement[:totalStudents] %></h4>
+<br /><br />
+<table class="table table-bordered table-hover">
+	<tr>
+		<th>Concepto</th>
+		<th>Ingresos</th>
+		<th>Gastos</th>
+	</tr>
+	<tr class="success">
+		<% income += @incomeStatement[:incomeInscriptions] %>
+		<td>Inscripciones</td>
+		<td>$<%= @incomeStatement[:incomeInscriptions] %></td>
+		<td></td>
+	</tr>
+	<tr class="success">
+		<% income += @incomeStatement[:incomeMaterial] %>
+		<td>Material</td>
+		<td>$<%= @incomeStatement[:incomeMaterial] %></td>
+		<td></td>
+	</tr>
+	<tr class="success">
+		<% income += @incomeStatement[:incomeTuition] %>
+		<td>Colegiaturas</td>
+		<td>$<%= @incomeStatement[:incomeTuition] %></td>
+		<td></td>
+	</tr>
+	<tr class="success">
+		<% income += @incomeStatement[:incomeExposition] %>
+		<td>Exposición</td>
+		<td>$<%= @incomeStatement[:incomeExposition] %></td>
+		<td></td>
+	</tr>
+	<tr class="success">
+		<% income += @incomeStatement[:incomeOther] %>
+		<td>Otros</td>
+		<td>$<%= @incomeStatement[:incomeOther] %></td>
+		<td></td>
+	</tr>
+	<tr class="error">
+		<% expenses += @incomeStatement[:notPayed] %>
+		<td>Cuentas por cobrar</td>
+		<td></td>
+		<td>$<%= @incomeStatement[:notPayed] %></td>
+	</tr>
+	<tr class="error">
+		<% expenses += @incomeStatement[:expensesRent] %>
+		<td>Renta</td>
+		<td></td>
+		<td>$<%= @incomeStatement[:expensesRent] %></td>
+	</tr>
+	<tr class="error">
+		<% expenses += @incomeStatement[:expensesServices] %>
+		<td>Servicios</td>
+		<td></td>
+		<td>$<%= @incomeStatement[:expensesServices] %></td>
+	</tr>
+	<tr class="error">
+		<% expenses += @incomeStatement[:expensesMaterial] %>
+		<td>Compra de Material</td>
+		<td></td>
+		<td>$<%= @incomeStatement[:expensesMaterial] %></td>
+	</tr>
+	<tr class="error">
+		<% expenses += @incomeStatement[:expensesSalaries] %>
+		<td>Salarios</td>
+		<td></td>
+		<td>$<%= @incomeStatement[:expensesSalaries] %></td>
+	</tr>
+	<tr class="error">
+		<% expenses += @incomeStatement[:expensesTaxes] %>
+		<td>Impuestos</td>
+		<td></td>
+		<td>$<%= @incomeStatement[:expensesTaxes] %></td>
+	</tr>
+	<tr class="error">
+		<% expenses += @incomeStatement[:expensesOther] %>
+		<td>Gastos varios</td>
+		<td></td>
+		<td>$<%= @incomeStatement[:expensesOther] %></td>
+	</tr>
+	<tr class="info">
+		<td><b>Subtotales</b></td>
+		<td>$<%= income %></td>
+		<td>$<%= expenses %></td>
+	</tr>
+	<tr class="info">
+		<td><b>Total</b></td>
+		<td colspan="2"><b>$<%= income - expenses %></b></td>
+	</tr>
+</table>
+
+<br />
+<br />
+<br />
+
+<table class="table table-bordered table-hover">
+	<tr class="info">
+		<td colspan="4"><b>Costo de Becas (Estimado)</b></td>
+	</tr>
+	<tr>
+		<th>Concepto</th>
+		<th>Sin becas ganarían</th>
+		<th>Monto de becas otorgadas</th>
+		<th>Total</th>
+	</tr>
+	<tr>
+		<td>Inscripción</td>
+		<td>$<%= @incomeStatement[:estimatedIncomeInscriptions] %></td>
+		<td>$<%= @incomeStatement[:discountInscriptions] %></td>
+		<td>$<%= @incomeStatement[:estimatedIncomeInscriptions] - @incomeStatement[:discountInscriptions] %></td>
+	</tr>
+	<tr>
+		<td>Material</td>
+		<td>$<%= @incomeStatement[:estimatedIncomeMaterial] %></td>
+		<td>$<%= @incomeStatement[:discountMaterial] %></td>
+		<td>$<%= @incomeStatement[:estimatedIncomeMaterial] - @incomeStatement[:discountMaterial] %></td>
+	</tr>
+	<tr>
+		<td>Colegiatura</td>
+		<td>$<%= @incomeStatement[:estimatedIncomeTuition] %></td>
+		<td>$<%= @incomeStatement[:discountTuition] %></td>
+		<td>$<%= @incomeStatement[:estimatedIncomeTuition] - @incomeStatement[:discountTuition] %></td>
+	</tr>
+	<tr>
+		<td>Exposición</td>
+		<td>$<%= @incomeStatement[:estimatedIncomeExposition] %></td>
+		<td>$<%= @incomeStatement[:discountExposition] %></td>
+		<td>$<%= @incomeStatement[:estimatedIncomeExposition] - @incomeStatement[:discountExposition] %></td>
+	</tr>
+	<tr class="info">
+		<%
+			noDiscount = @incomeStatement[:estimatedIncomeInscriptions]\
+						+ @incomeStatement[:estimatedIncomeMaterial]\
+						+ @incomeStatement[:estimatedIncomeTuition]\
+						+ @incomeStatement[:estimatedIncomeExposition]
+			discount = @incomeStatement[:discountInscriptions]\
+						+ @incomeStatement[:discountMaterial]\
+						+ @incomeStatement[:discountTuition]\
+						+ @incomeStatement[:discountExposition]
+		%>
+		<td><b>Totales</b></td>
+		<td><b>$<%= noDiscount %></b></td>
+		<td><b>$<%= discount %></b></td>
+		<td><b>$<%= noDiscount - discount %></b></td>
+	</tr>
+</table>

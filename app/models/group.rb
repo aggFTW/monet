@@ -46,4 +46,21 @@ class Group < ActiveRecord::Base
     return first, d
   end
 
+  def activeStudents
+    allStudents = self.students
+    return allStudents.keep_if { |s| not s.dischargedInSchoolyear(self.schoolyear) }
+  end
+
+  # TODO: What if the student is discharged, admitted later, discharged? It's a mess
+  # Just introduce a freaking admission date already :(
+  def activeStudentsInMonth(month)
+    allStudents = self.students
+    return allStudents.keep_if { |s| not s.dischargedBy(
+      toDateLastDay(self.schoolyear.yearForMonth(month), month)) }
+  end
+
+  def toDateLastDay(year, month)
+    Date.civil(year, month, -1)
+  end
+
 end

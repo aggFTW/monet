@@ -40,6 +40,8 @@ Monet::Application.routes.draw do
   match "/employee/person" => "people#regemployee"
   # match "/employee/regemp" => "employee#regnew"
 
-  match "incomestatement", to: "reports#incomeStatementYear"
+  match "incomestatementyear", to: "reports#incomeStatementYear"
+  match "incomestatementmonth", to: "reports#incomeStatementMonth"
+  match "incomestatementmonth/:month", to: "reports#incomeStatementMonth"
   match "error", to: "reports#error"
 end

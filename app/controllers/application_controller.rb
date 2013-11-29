@@ -60,4 +60,12 @@ class ApplicationController < ActionController::Base
 		session[:employee_person_id]
 	end
 
+	def toDate(year, month)
+		Date.strptime("{ %d, %d, %d }" % [year, month, 1], "{ %Y, %m, %d }")
+	end
+
+	def toDateLastDay(year, month)
+		Date.civil(year, month, -1)
+	end
+
 end
