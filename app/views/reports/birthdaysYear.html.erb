@@ -7,7 +7,7 @@
 		<td>Cumpleaños</td>
 		<td>Edad</td>
 	</tr>
-	<% for student in @birthdays.sort { |x,y| x.person.dob <=> y.person.dob } %>
+	<% for student in @birthdays.sort { |x,y| normalizeYear(x.person.dob) <=> normalizeYear(y.person.dob) } %>
 		<tr>
 			<td><%= student.name %></td>
 			<td><%= student.person.dob.strftime("%d %B, %Y") %></td>
