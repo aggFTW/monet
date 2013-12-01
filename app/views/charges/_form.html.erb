@@ -14,7 +14,7 @@
 			:label => 'Tipo',
 			:item_wrapper_class => 'inline'%>
 
-		<%= f.input :student_ids, as: :check_boxes, collection: Student.all.collect {|x| [x.personName, x.id]}, :label => 'Estudiantes:' %>
+		<%= f.input :student_ids, as: :check_boxes, collection: Student.all.collect {|x| [x.name, x.id]}, :label => 'Estudiantes:' %>
 
 		<div class="control-group">
 			<div class="controls">

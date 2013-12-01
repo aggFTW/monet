@@ -16,7 +16,7 @@
 	<fieldset>
 
 		<%= label_tag "tag1000", "Alumno:" %>
-		<%= collection_select(nil, :student_id,  Student.all, :id, :personName, {:prompt   => "Seleccione un alumno"}, {:id => 'students_select'}) %>
+		<%= collection_select(nil, :student_id,  Student.all, :id, :name, {:prompt   => "Seleccione un alumno"}, {:id => 'students_select'}) %>
 		<br />
 
 		<%= label_tag "tag1100", "Cargo:" %>

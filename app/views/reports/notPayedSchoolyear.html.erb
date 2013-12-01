@@ -21,18 +21,71 @@ end
 
 %>
 
-<% for famKey in payFamily.keys %>
+<%
+	for famKey in payFamily.keys
+		total = 0
+%>
+		<table class="table table-bordered table-hover">
+			<tr class="info">
+				<td><b>Papá</b></td>
+				<%
+				dad = payFamily[famKey].keys.map { |s| s.person.dad }.keep_if{ |d| d != nil }.first
+				if dad != nil
+				%>
+					<td><%= dad.name %></td>
+					<td><%= dad.cellr %></td>
+					<td><%= dad.email %></td>
+					<td></td>
+				<% else %>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				<% end %>
+			</tr>
+			<tr class="info">
+				<td><b>Mamá</b></td>
+				<%
+				mom = payFamily[famKey].keys.map { |s| s.person.mom }.keep_if{ |d| d != nil }.first
+				if mom != nil
+				%>
+					<td><%= mom.name %></td>
+					<td><%= mom.cellr %></td>
+					<td><%= mom.email %></td>
+					<td></td>
+				<% else %>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				<% end %>
+			</tr>
 
-	<h1>Familia <%= famKey %></h1>
+			<tr>
+				<th>Alumno</th>
+				<th>Cargo</th>
+				<th>Comentarios</th>
+				<th>Fecha límite</th>
+				<th>Monto</th>
+			</tr>
 
-	<% for student in payFamily[famKey].keys %>
-
-		<h3>Estudiante <%= student.personName %></h3>
-
-		<% for charge, amount in payFamily[famKey][student] %>
-			<h4><%= charge.name %> - $ <%= amount %></h4>
-		<% end %>				
-
-	<% end %>
-
-<% end %>
+			<% for student in payFamily[famKey].keys %>
+				<% for charge, amount in payFamily[famKey][student].sort { |x,y| x[0].datedue <=> y[0].datedue } %>
+					<tr>
+						<td><%= link_to student.name, "paymentsstudent/" + student.id.to_s %></td>
+						<td><%= link_to charge.name, edit_charge_path(charge) %></td>
+						<td><%= student.payments.keep_if{ |p| p.charge == charge }.map { |p| p.comment }.inject(""){ |str, com| str += "* " + com + ";" } %></td>
+						<% total += amount %>
+						<td><%= charge.datedue %></td>
+						<td>$<%= amount %></td>
+					</tr>
+				<% end %>
+			<% end %>
+			<tr class="error">
+				<td colspan="4"><b>Total</b></td>
+				<td>$<%= total %></td>
+			</tr>
+		</table>
+<%
+	end
+%>

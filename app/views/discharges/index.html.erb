@@ -15,7 +15,7 @@
   <tbody>
   <% @discharges.each do |discharge| %>
     <tr>
-      <td><%= discharge.student.personName %></td>
+      <td><%= discharge.student.name %></td>
       <td><%= discharge.dateof %></td>
       <td><%= discharge.reason %></td>
       <td><%= link_to 'Mostrar', discharge %></td>

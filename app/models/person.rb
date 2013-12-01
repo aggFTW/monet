@@ -41,7 +41,7 @@ class Person < ActiveRecord::Base
   end
 
   def age
-    now = Time.now.utc.to_date
+    now = Date.today
     now.year - self.dob.year - ((now.month > self.dob.month || (now.month == self.dob.month && now.day >= self.dob.day)) ? 0 : 1)
   end
 

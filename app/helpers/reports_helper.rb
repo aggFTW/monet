@@ -32,4 +32,8 @@ module ReportsHelper
 			return familyKeys, numberFamily, familyKeys[dad]
 		end
 	end
+
+	def normalizeYear(date)
+		return Date.strptime("{ %d, %d, %d }" % [2000, date.month, date.day], "{ %Y, %m, %d }")
+	end
 end

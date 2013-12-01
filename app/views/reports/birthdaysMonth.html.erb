@@ -1,0 +1,25 @@
+<% today = Date.today %>
+<h1>Lista de cumpleaños del mes <%= today.month %></h1>
+
+<table class="table table-bordered table-hover">
+	<tr class="success">
+		<td>Nombre</td>
+		<td>Día</td>
+		<td>Edad</td>
+	</tr>
+	<% for student in @birthdays %>
+		<tr>
+			<td><%= student.name %></td>
+			<td><%= student.person.dob.day %></td>
+			<td>
+				<% if normalizeYear(student.person.dob) <= normalizeYear(today) %>
+					<%= student.person.age %>
+				<% else %>
+					<%= student.person.age + 1 %>
+				<% end %>
+			</td>
+		</tr>
+	<% end %>
+</table>
+
+<%= link_to "Cumpleaños del año escolar", controller: :reports, action: :birthdaysYear %>

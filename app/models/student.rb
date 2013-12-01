@@ -17,9 +17,9 @@ class Student < ActiveRecord::Base
   validates :person_id, :presence => true, :uniqueness => true, :unless => "! person.nil?"
   validates_associated :person
 
-  before_save :payments
+  before_save :paymentsRule
 
-  def payments
+  def paymentsRule
     if self.sType == 'NA'
       self.sExposition = 0
       self.sInscription = 0
@@ -28,7 +28,7 @@ class Student < ActiveRecord::Base
     end
   end
 
-  def personName
+  def name
     return self.person.name
   end
 

@@ -1,0 +1,36 @@
+<%
+schoolyear = Schoolyear.where("state = ?", "Activo").all
+error = false
+
+if schoolyear.length == 1
+	schoolyear = schoolyear.first
+
+	birthdaysToday = schoolyear.groups.map { |g| g.students }.flatten.uniq.keep_if{ |s| normalizeYear(s.person.dob) == normalizeYear(Date.today) }
+	birthdaysTomorrow = schoolyear.groups.map { |g| g.students }.flatten.uniq.keep_if{ |s| normalizeYear(s.person.dob) == normalizeYear(Date.today + 1) }
+else
+	error = true
+end
+%>
+
+<div class="btn-group" style="display:inline-block;">
+	<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+		<i class="icon-gift"></i> (<%= birthdaysToday.length %>)
+		<span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu">
+		<li>Hoy</li>
+		<% for student in birthdaysToday %>
+			<li>* <%= student.name %> (<%= student.person.age %>)</li>
+		<% end %>
+		<li class="divider"></li>
+		<li>Mañana</li>
+		<% for student in birthdaysTomorrow %>
+			<li>* <%= student.name %> (<%= student.person.age + 1%>)</li>
+		<% end %>
+		<li class="divider"></li>
+		<li><%= link_to "Cumpleaños del mes", :controller => "reports", :action => "birthdaysMonth" %></li>
+		<% if error %>
+			<li><%= link_to "Active sólo un ciclo escolar", :controller => "schoolyears", :action => "index" %></li>
+		<% end %>
+	</ul>
+</div>

@@ -1,7 +1,9 @@
 <h1>Editar alumno</h1>
  
 <%= render 'form' %>
- 
+
+<%= link_to 'Editar datos personales', edit_person_path(@student.person) %>
+<br />
 <%= link_to 'Mostrar', @student %> 
 <% if check_admin %>
 	|

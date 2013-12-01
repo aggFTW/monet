@@ -1,7 +1,7 @@
 <%= simple_form_for(@discharge) do |f| %>
 	<fieldset>
 
-		<%= f.association :student, collection: Student.all, label_method: :personName, value_method: :id, :label => 'Alumno:' %>
+		<%= f.association :student, collection: Student.all, label_method: :name, value_method: :id, :label => 'Alumno:' %>
 
 		<%= label_tag "tag1", "Fecha:" %>
 		<%= text_field nil, nil, {:class => 'date_picker', :id => "discharge_datedof", :name => 'discharge[dateof]', :required => 'required'} %>

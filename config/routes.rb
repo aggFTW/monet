@@ -40,9 +40,16 @@ Monet::Application.routes.draw do
   match "/employee/person" => "people#regemployee"
   # match "/employee/regemp" => "employee#regnew"
 
+  match "worksschoolyear" => "works#indexActiveSchoolyear"  
+
+  match "selectismonth" => "reports#selectMonthlyIS"
   match "incomestatementyear", to: "reports#incomeStatementYear"
   match "incomestatementmonth", to: "reports#incomeStatementMonth"
   match "incomestatementmonth/:month", to: "reports#incomeStatementMonth"
+  match "incomestatementtoday", to: "reports#incomeStatementToday"
   match "notpayedschoolyear", to: "reports#notPayedSchoolyear"
+  match "paymentsstudent/:student_id", to: "reports#paymentsStudent"
+  match "birthdays", to: "reports#birthdaysMonth"
+  match "birthdaysyear", to: "reports#birthdaysYear"
   match "error", to: "reports#error"
 end

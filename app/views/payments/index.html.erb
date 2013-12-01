@@ -18,7 +18,7 @@
   <tbody>
   <% @payments.each do |payment| %>
     <tr>
-      <td><%= payment.student.personName %></td>
+      <td><%= payment.student.name %></td>
       <% if payment.charge.nil? %>
         <td>NA</td>
       <% else %>

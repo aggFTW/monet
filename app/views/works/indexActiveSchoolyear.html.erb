@@ -1,10 +1,17 @@
-<h1>Obras</h1>
+<% 
+if @works.first != nil
+  nameSchoolyear = @works.first.schoolyear.name
+else
+  nameSchoolyear = ""
+end
+%>
+
+<h1>Obras del ciclo escolar <%= nameSchoolyear %></h1>
  
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
       <th>Alumno</th>
-      <th>Ciclo Escolar</th>
       <th>Título</th>
       <th>Técnica</th>
       <th></th>
@@ -17,7 +24,6 @@
   <% @works.each do |work| %>
     <tr>
       <td><%= work.student.name %></td>
-      <td><%= work.schoolyear.name %></td>
       <td><%= work.title %></td>
       <td><%= work.technique %></td>
       <td><%= link_to 'Mostrar', work %></td>

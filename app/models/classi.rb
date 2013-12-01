@@ -26,7 +26,7 @@ class Classi < ActiveRecord::Base
   def listStudents
   	e = ''
   	for em in self.students
-  		e += em.personName + ', '
+  		e += em.name + ', '
   	end
   	e = e[0..-3]
   	e

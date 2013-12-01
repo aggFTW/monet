@@ -10,6 +10,24 @@ class WorksController < ApplicationController
 		end
 	end
 
+	def indexActiveSchoolyear
+		if check_admin
+			schoolyear = Schoolyear.where("state = ?", "Activo").all
+
+			if schoolyear.length == 1
+				schoolyear = schoolyear.first
+				@works = schoolyear.groups.map { |g| g.students }.flatten.map { |s| s.works }.flatten.uniq
+			else
+				redirect_to controller: :reports, action: :error, :message => "No hay sólo 1 ciclo escolar activo. Cierre los ciclos escolares pasados para poder accesar a las obras del ciclo escolar."
+			end
+			
+			Work.order('student_id ASC, schoolyear_id DESC')
+		else
+			flash[:error] = "Acceso restringido."
+			redirect_to(root_path)
+		end
+	end
+
 	def new
 		if check_admin
 			@work = Work.new

@@ -68,4 +68,8 @@ class ApplicationController < ActionController::Base
 		Date.civil(year, month, -1)
 	end
 
+	def normalizeYear(date)
+		return Date.strptime("{ %d, %d, %d }" % [2000, date.month, date.day], "{ %Y, %m, %d }")
+	end
+
 end

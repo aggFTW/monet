@@ -1,7 +1,7 @@
 <%= simple_form_for(@payment) do |f| %>
 	<fieldset>
 
-		<%= f.association :student, collection: [@payment.student], label_method: :personName, value_method: :id, :label => 'Alumno:' %>
+		<%= f.association :student, collection: [@payment.student], label_method: :name, value_method: :id, :label => 'Alumno:' %>
 
 		<%= f.association :charge, collection: @payment.student.charges, label_method: :name, value_method: :id, :label => 'Cargo:' %>
 

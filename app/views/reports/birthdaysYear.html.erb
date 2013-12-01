@@ -1,0 +1,23 @@
+<% today = Date.today %>
+<h1>Lista de cumpleaños del ciclo escolar</h1>
+
+<table class="table table-bordered table-hover">
+	<tr class="success">
+		<td>Nombre</td>
+		<td>Cumpleaños</td>
+		<td>Edad</td>
+	</tr>
+	<% for student in @birthdays.sort { |x,y| x.person.dob <=> y.person.dob } %>
+		<tr>
+			<td><%= student.name %></td>
+			<td><%= student.person.dob.strftime("%d %B, %Y") %></td>
+			<td>
+				<% if normalizeYear(student.person.dob) <= normalizeYear(today) %>
+					<%= student.person.age %>
+				<% else %>
+					<%= student.person.age + 1 %>
+				<% end %>
+			</td>
+		</tr>
+	<% end %>
+</table>

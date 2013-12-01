@@ -24,12 +24,12 @@
 				generalStudents = Student.all - classStudents
 			%>
 
-			<%= f.input :student_ids, as: :check_boxes, collection: classStudents.collect {|x| [x.personName, x.id]}, :label => 'Alumnos de la clase:' %>
+			<%= f.input :student_ids, as: :check_boxes, collection: classStudents.collect {|x| [x.name, x.id]}, :label => 'Alumnos de la clase:' %>
 			<br />
 
-			<%= f.input :student_ids, as: :check_boxes, collection: generalStudents.collect {|x| [x.personName, x.id]}, :label => 'Alumnos generales:' %>
+			<%= f.input :student_ids, as: :check_boxes, collection: generalStudents.collect {|x| [x.name, x.id]}, :label => 'Alumnos generales:' %>
 		<% else %>
-			<%= f.input :student_ids, as: :check_boxes, collection: Student.all.collect {|x| [x.personName, x.id]}, :label => 'Alumnos:' %>
+			<%= f.input :student_ids, as: :check_boxes, collection: Student.all.collect {|x| [x.name, x.id]}, :label => 'Alumnos:' %>
 		<% end %>
 		
 
@@ -39,7 +39,7 @@
 		<% f.select :employee_ids, Employee.all.collect {|x| [x.to_s, x.id]}, {}, :multiple => true %>
 
 		<% label_tag "tag2", "Alumnos:" %>
-		<% f.select :student_ids, Student.all.collect {|x| [x.personName, x.id]}, {}, :multiple => true %>
+		<% f.select :student_ids, Student.all.collect {|x| [x.name, x.id]}, {}, :multiple => true %>
 		<% #alternativa %>
 
 

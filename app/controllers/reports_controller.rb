@@ -6,6 +6,16 @@ class ReportsController < ApplicationController
 	STARTMONTH = 9
 	ENDMONTH = 7
 	EXPOMONTH = 6
+	YEARNORMALIZED = 2000
+
+	def selectMonthlyIS
+		if check_admin
+			@groups = Group.all
+		else
+			flash[:error] = "Acceso restringido."
+			redirect_to(root_path)
+		end
+	end
 
 	def incomeStatementYear
 		if check_admin
@@ -43,6 +53,23 @@ class ReportsController < ApplicationController
 		end
 	end
 
+	def incomeStatementToday
+		if check_admin
+			schoolyear = Schoolyear.where("state = ?", "Activo").all
+
+			if schoolyear.length == 1
+				schoolyear = schoolyear.first
+				
+				@incomeStatement = todayIS(schoolyear)
+			else
+				redirect_to controller: :reports, action: :error, :message => "No hay sólo 1 ciclo escolar activo. Cierre los ciclos escolares pasados para poder accesar al estado de resultados o abra un ciclo escolar."
+			end
+		else
+			flash[:error] = "Acceso restringido."
+			redirect_to(root_path)
+		end
+	end
+
 	def error
 		if check_admin
 			@message = params[:message]
@@ -68,6 +95,53 @@ class ReportsController < ApplicationController
 			redirect_to(root_path)			
 		end
 	end
+
+	def paymentsStudent
+		if check_admin
+			@student = Student.find(params[:student_id])
+		else
+			flash[:error] = "Acceso restringido."
+			redirect_to(root_path)
+		end
+	end
+
+	def birthdaysMonth
+		if check_admin
+			schoolyear = Schoolyear.where("state = ?", "Activo").all
+
+			if schoolyear.length == 1
+				schoolyear = schoolyear.first
+				month = Date.today.month
+				year = Date.today.year
+				@birthdays = birthdaysByDates(schoolyear, toDate(year, month), toDateLastDay(year, month))
+			else
+				redirect_to controller: :reports, action: :error, :message => "No hay sólo 1 ciclo escolar activo. Cierre los ciclos escolares pasados para poder accesar a las cuentas por cobrar de este ciclo o abra un ciclo escolar."
+			end
+		else
+			flash[:error] = "Acceso restringido."
+			redirect_to(root_path)
+		end
+	end
+
+	def birthdaysYear
+		if check_admin
+			schoolyear = Schoolyear.where("state = ?", "Activo").all
+
+			if schoolyear.length == 1
+				schoolyear = schoolyear.first
+
+				@birthdays = birthdaysByDates(schoolyear, toDate(Date.today.year, 1), toDateLastDay(Date.today.year, 12))
+			else
+				redirect_to controller: :reports, action: :error, :message => "No hay sólo 1 ciclo escolar activo. Cierre los ciclos escolares pasados para poder accesar a las cuentas por cobrar de este ciclo o abra un ciclo escolar."
+			end
+		else
+			flash[:error] = "Acceso restringido."
+			redirect_to(root_path)
+		end
+	end
+
+
+
 
 
 
@@ -166,6 +240,31 @@ class ReportsController < ApplicationController
 		incomeStatement[:discountExposition] = discountExposition(schoolyear)
 
 		return incomeStatement
+	end
+
+	def todayIS(schoolyear)
+		today = Date.today
+
+		incomeStatement = Hash.new
+
+		incomeStatement[:name] = "Transacciones del día " + today.strftime("%d %B, %Y")
+
+		incomeStatement[:payments] = Payment.where("dateof >= :startDate AND dateof <= :endDate", {startDate: today, endDate: today}).all
+		pays = payments(today, today)
+		incomeStatement[:incomeInscriptions] = pays[:inscription]
+		incomeStatement[:incomeMaterial] = pays[:material]
+		incomeStatement[:incomeTuition] = pays[:tuition]
+		incomeStatement[:incomeExposition] = pays[:exposition]
+		incomeStatement[:incomeOther] = pays[:other]
+
+		incomeStatement[:expenses] = Expense.where("dateof >= :startDate AND dateof <= :endDate", {startDate: today, endDate: today}).all
+		exps = expenses(today, today)
+		incomeStatement[:expensesRent] = exps[:rent]
+		incomeStatement[:expensesServices] = exps[:services]
+		incomeStatement[:expensesMaterial] = exps[:material]
+		incomeStatement[:expensesSalaries] = exps[:salaries]
+		incomeStatement[:expensesTaxes] = exps[:taxes]
+		incomeStatement[:expensesOther] = exps[:other]
 	end
 
 
@@ -279,4 +378,35 @@ class ReportsController < ApplicationController
 		return students.map { |s| schoolyear.stdExposition - s.sExposition }.inject(0, :+)
 	end
 
+	# Birthdays
+	def birthdaysByDates(schoolyear, startDate, endDate)
+		rv = schoolyear.groups.map { |g| g.students }.flatten.uniq.keep_if{ |s| normalizeYear(s.person.dob) <= normalizeYear(endDate) && normalizeYear(s.person.dob) >= normalizeYear(startDate) }
+
+		# Add people who were born on Feb 29th
+		if wouldContainFeb29(startDate, endDate)
+			rv += schoolyear.groups.map { |g| g.students }.flatten.uniq.keep_if{ |s| normalizeYear(s.person.dob) == toDateLastDay(YEARNORMALIZED, 2) }
+		end
+
+		return rv.uniq
+	end
+
+	def normalizeYear(date)
+		return Date.strptime("{ %d, %d, %d }" % [YEARNORMALIZED, date.month, date.day], "{ %Y, %m, %d }")
+	end
+
+	def wouldContainFeb29(startDate, endDate)
+		startDate = normalizeYear(startDate)
+		endDate = normalizeYear(endDate)
+		feb29 = toDateLastDay(2000, 2)
+
+		return endDate == feb29 - 1 ||  (startDate <= feb29 && endDate >= feb29)
+	end
+
+	def toDate(year, month)
+		Date.strptime("{ %d, %d, %d }" % [year, month, 1], "{ %Y, %m, %d }")
+	end
+
+	def toDateLastDay(year, month)
+		Date.civil(year, month, -1)
+	end
 end

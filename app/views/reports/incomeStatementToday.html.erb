@@ -1,0 +1,139 @@
+<%
+income = 0
+expenses = 0
+ %>
+
+<% income += @incomeStatement[:incomeInscriptions] %>
+<% income += @incomeStatement[:incomeMaterial] %>
+<% income += @incomeStatement[:incomeTuition] %>
+<% income += @incomeStatement[:incomeExposition] %>
+<% income += @incomeStatement[:incomeOther] %>
+
+<% expenses += @incomeStatement[:expensesRent] %>
+<% expenses += @incomeStatement[:expensesServices] %>
+<% expenses += @incomeStatement[:expensesMaterial] %>
+<% expenses += @incomeStatement[:expensesSalaries] %>
+<% expenses += @incomeStatement[:expensesTaxes] %>
+<% expenses += @incomeStatement[:expensesOther] %>
+
+<h1><%= @incomeStatement[:name] %></h1>
+<br /><br />
+
+<h2>Pagos</h2>
+<table class="table table-bordered table-hover">
+	<tr>
+		<th>Alumno</th>
+		<th>Concepto</th>
+		<th>Categoría</th>
+		<th>Tipo de pago</th>
+		<th>Cantidad</th>
+	</tr>
+	<% for pay in incomeStatement[:payments] %>
+		<tr>
+			<td><%= pay.student.name %></td>
+			<td><%= pay.charge.name %></td>
+			<td><%= pay.charge.ctype %></td>
+			<td><%= pay.ptype %></td>
+			<td><%= pay.amount %></td>
+		</tr>
+	<% end %>
+</table>
+
+<br />
+<br />
+<br />
+
+<h2>Gastos</h2>
+<table class="table table-bordered table-hover">
+	<tr>
+		<th>Descripción</th>
+		<th>Tipo</th>
+		<th>Empleado</th>
+		<th>Cantidad</th>
+	</tr>
+	<% for expense in incomeStatement[:expenses] %>
+		<tr>
+			<td><%= expense.description %></td>
+			<td><%= expense.etype %></td>
+			<td><%= expense.employee.to_s %></td>
+			<td><%= expense.amount %></td>
+		</tr>
+	<% end %>
+</table>
+
+<br />
+<br />
+<br />
+
+<h2>Totales</h2>
+<table class="table table-bordered table-hover">
+	<tr>
+		<th>Concepto</th>
+		<th>Ingresos</th>
+		<th>Gastos</th>
+	</tr>
+	<tr class="success">
+		<td>Inscripciones</td>
+		<td>$<%= @incomeStatement[:incomeInscriptions] %></td>
+		<td></td>
+	</tr>
+	<tr class="success">
+		<td>Material</td>
+		<td>$<%= @incomeStatement[:incomeMaterial] %></td>
+		<td></td>
+	</tr>
+	<tr class="success">
+		<td>Colegiaturas</td>
+		<td>$<%= @incomeStatement[:incomeTuition] %></td>
+		<td></td>
+	</tr>
+	<tr class="success">
+		<td>Exposición</td>
+		<td>$<%= @incomeStatement[:incomeExposition] %></td>
+		<td></td>
+	</tr>
+	<tr class="success">
+		<td>Otros</td>
+		<td>$<%= @incomeStatement[:incomeOther] %></td>
+		<td></td>
+	</tr>
+	<tr class="error">
+		<td>Renta</td>
+		<td></td>
+		<td>$<%= @incomeStatement[:expensesRent] %></td>
+	</tr>
+	<tr class="error">
+		<td>Servicios</td>
+		<td></td>
+		<td>$<%= @incomeStatement[:expensesServices] %></td>
+	</tr>
+	<tr class="error">
+		<td>Compra de Material</td>
+		<td></td>
+		<td>$<%= @incomeStatement[:expensesMaterial] %></td>
+	</tr>
+	<tr class="error">
+		<td>Salarios</td>
+		<td></td>
+		<td>$<%= @incomeStatement[:expensesSalaries] %></td>
+	</tr>
+	<tr class="error">
+		<td>Impuestos</td>
+		<td></td>
+		<td>$<%= @incomeStatement[:expensesTaxes] %></td>
+	</tr>
+	<tr class="error">
+		<td>Gastos varios</td>
+		<td></td>
+		<td>$<%= @incomeStatement[:expensesOther] %></td>
+	</tr>
+	<tr class="info">
+		<td><b>Subtotales</b></td>
+		<td>$<%= income %></td>
+		<td>$<%= expenses %></td>
+	</tr>
+	<tr class="info">
+		<td><b>Total</b></td>
+		<td colspan="2"><b>$<%= income - expenses %></b></td>
+	</tr>
+</table>
