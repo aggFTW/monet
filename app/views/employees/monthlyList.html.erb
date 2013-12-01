@@ -1,0 +1,48 @@
+<%
+	employees = @classis.map { |c| c.employees }.flatten.uniq
+	totalAll = 0
+%>
+
+<h1>Listado de pago para empleados en el mes <%= @month %></h1>
+
+<table class="table table-bordered table-hover">
+	<tr class="info">
+		<td>Nombre</td>
+		<td>Rol</td>
+		<td>Salario por clase</td>
+		<td>Grupo de clase</td>
+		<td>Fecha</td>
+	</tr>
+	<% for employee in employees.sort { |x,y| x.person.name <=> y.person.name } %>
+		<% classisEmployee = @classis.keep_if { |c| c.employees.include?(employee) } %>
+		<% totalSingle = 0 %>
+		<tr class="success">
+			<td><%= employee.person.name %></td>
+			<td><%= employee.role %></td>
+			<td>$<%= employee.salary %></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<% for classi in classisEmployee %>
+			<% totalSingle += employee.salary %>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><%= classi.group.name %></td>
+				<td><%= classi.dateof %></td>
+			</tr>
+		<% end %>
+		<tr>
+			<td style="text-align:right;" colspan="4">Total</td>
+			<td>$<%= totalSingle %></td>
+		</tr>
+		<% totalAll += totalSingle %>
+	<% end %>
+	<tr class="error">
+		<td colspan="4"><b>Total</b></td>
+		<td><b>$<%= totalAll %></b></td>
+	</tr>
+</table>
+
+<%= link_to "Seleccionar otro mes", controller: :employees, action: :selectMonthlyList %>

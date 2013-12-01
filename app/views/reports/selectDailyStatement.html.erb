@@ -1,0 +1,14 @@
+<script>
+function displayDate()
+{
+	window.location.href = "/incomestatementday/" + document.getElementById("day").value;
+}
+</script>
+
+
+
+<h1>Seleccionar día para ver sus transacciones</h1>
+
+<%= text_field nil, nil, {:class => 'date_picker', :id => "day", :name => 'day'} %>
+<br />
+<button type="button" onclick="displayDate()">Ver transacciones</button>

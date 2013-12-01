@@ -28,7 +28,7 @@ expenses = 0
 		<th>Tipo de pago</th>
 		<th>Cantidad</th>
 	</tr>
-	<% for pay in incomeStatement[:payments] %>
+	<% for pay in @incomeStatement[:payments] %>
 		<tr>
 			<td><%= pay.student.name %></td>
 			<td><%= pay.charge.name %></td>
@@ -51,7 +51,7 @@ expenses = 0
 		<th>Empleado</th>
 		<th>Cantidad</th>
 	</tr>
-	<% for expense in incomeStatement[:expenses] %>
+	<% for expense in @incomeStatement[:expenses] %>
 		<tr>
 			<td><%= expense.description %></td>
 			<td><%= expense.etype %></td>
@@ -137,3 +137,5 @@ expenses = 0
 		<td colspan="2"><b>$<%= income - expenses %></b></td>
 	</tr>
 </table>
+
+<%= link_to "Seleccionar otro día", controller: :reports, action: :selectDailyStatement %>

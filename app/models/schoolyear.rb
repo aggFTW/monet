@@ -16,6 +16,16 @@ class Schoolyear < ActiveRecord::Base
   validates :stdMaterial, :presence => true
   validates :stdExposition, :presence => true
 
+  before_save :checkDates
+
+  def checkDates
+    if self.beginning <= self.end
+      true
+    else
+      false
+    end
+  end
+
   def dateInSchoolyear(eventDate)
     return eventDate <= self.end && eventDate >= self.beginning
   end

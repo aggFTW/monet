@@ -142,7 +142,7 @@ class SchoolyearsController < ApplicationController
 	# 		  true  otherwise.
 	def noConflictStates(i, st)
 		if st != 'Cerrado'
-			sy = Schoolyear.where(state: st)
+			sy = Schoolyear.where(state: st).all
 			if sy.length == 1 and sy[0].id != i
 				false
 			elsif sy.length > 1

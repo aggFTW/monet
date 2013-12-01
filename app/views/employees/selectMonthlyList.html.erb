@@ -1,0 +1,26 @@
+<script>
+function displayDate()
+{
+	window.location.href = "/listemployeemonth/" + document.getElementById("month").value;
+}
+</script>
+
+
+
+<h1>Seleccionar mes para ver la lista de pagos de empleados</h1>
+
+<%= select_tag 'month', options_for_select([\
+	['Septiembre', '9'],\
+	['Octubre', '10'],\
+	['Noviembre', '11'],\
+	['Diciembre', '12'],\
+	['Enero', '1'],\
+	['Febrero', '2'],\
+	['Marzo', '3'],\
+	['Abril', '4'],\
+	['Mayo', '5'],\
+	['Junio', '6'],\
+	['Julio', '7'],\
+	['Agosto', '8']])%>
+<br />
+<button type="button" onclick="displayDate()">Pagos de empleados</button>

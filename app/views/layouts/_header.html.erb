@@ -110,6 +110,20 @@
 				</ul>
 			</div>
 
+			<div class="btn-group" style="display:inline-block;">
+				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+					Reportes
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li><%= link_to "Transacciones del día", :controller => "reports", :action => "incomeStatementDay" %></li>
+					<li><%= link_to "Cuentas por cobrar", :controller => "reports", :action => "notPayedSchoolyear" %></li>
+					<li><%= link_to "Pago a empleados", :controller => "employees", :action => "monthlyList" %></li>
+					<li><%= link_to "Estado de Resultados Mensual", :controller => "reports", :action => "incomeStatementMonth" %></li>
+					<li><%= link_to "Estado de Resultados Anual", :controller => "reports", :action => "incomeStatementYear" %></li>
+				</ul>
+			</div>
+
 
 
 

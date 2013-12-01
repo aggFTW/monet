@@ -94,4 +94,55 @@ class EmployeesController < ApplicationController
 		end
 	end
 
+	def selectMonthlyList
+		if check_admin
+		else
+			flash[:error] = "Acceso restringido."
+			redirect_to(root_path)
+		end
+	end
+
+	def monthlyList
+		if check_admin
+			schoolyear = Schoolyear.where("state = ?", "Activo").all
+
+			if schoolyear.length == 1
+				schoolyear = schoolyear.first
+				if params[:month] != nil
+					@month = params[:month]
+					@classis = monthList(schoolyear, params[:month].to_i)
+				else
+					@month = ""
+					@classis = currentMonthList(schoolyear)
+				end
+			else
+				redirect_to controller: :reports, action: :error, :message => "No hay sólo 1 ciclo escolar activo. Cierre los ciclos escolares pasados para poder accesar al estado de resultados o abra un ciclo escolar."
+			end
+		else
+			flash[:error] = "Acceso restringido."
+			redirect_to(root_path)
+		end
+	end
+
+
+	# Helpers - I hate Rails
+
+	def currentMonthList(schoolyear)
+		return monthList(schoolyear, Date.today.month)
+	end
+
+	def monthList(schoolyear, month)
+		firstDay = toDate(schoolyear.yearForMonth(month), month)
+		lastDay = toDateLastDay(schoolyear.yearForMonth(month), month)
+
+		return Classi.where("dateof >= :firstDay AND dateof <= :lastDay", {firstDay: firstDay, lastDay: lastDay}).all
+	end
+
+	def toDate(year, month)
+		Date.strptime("{ %d, %d, %d }" % [year, month, 1], "{ %Y, %m, %d }")
+	end
+
+	def toDateLastDay(year, month)
+		Date.civil(year, month, -1)
+	end
 end

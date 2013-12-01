@@ -10,7 +10,14 @@ class ReportsController < ApplicationController
 
 	def selectMonthlyIS
 		if check_admin
-			@groups = Group.all
+		else
+			flash[:error] = "Acceso restringido."
+			redirect_to(root_path)
+		end
+	end
+
+	def selectDailyStatement
+		if check_admin
 		else
 			flash[:error] = "Acceso restringido."
 			redirect_to(root_path)
@@ -53,14 +60,19 @@ class ReportsController < ApplicationController
 		end
 	end
 
-	def incomeStatementToday
+	def incomeStatementDay
 		if check_admin
 			schoolyear = Schoolyear.where("state = ?", "Activo").all
 
 			if schoolyear.length == 1
 				schoolyear = schoolyear.first
 				
-				@incomeStatement = todayIS(schoolyear)
+				if params[:day] != nil
+					day = Date.strptime(params[:day], "%Y-%m-%d")
+					@incomeStatement = todayIS(schoolyear, day)
+				else
+					@incomeStatement = todayIS(schoolyear, Date.today)
+				end
 			else
 				redirect_to controller: :reports, action: :error, :message => "No hay sólo 1 ciclo escolar activo. Cierre los ciclos escolares pasados para poder accesar al estado de resultados o abra un ciclo escolar."
 			end
@@ -242,9 +254,7 @@ class ReportsController < ApplicationController
 		return incomeStatement
 	end
 
-	def todayIS(schoolyear)
-		today = Date.today
-
+	def todayIS(schoolyear, today)
 		incomeStatement = Hash.new
 
 		incomeStatement[:name] = "Transacciones del día " + today.strftime("%d %B, %Y")
@@ -265,6 +275,8 @@ class ReportsController < ApplicationController
 		incomeStatement[:expensesSalaries] = exps[:salaries]
 		incomeStatement[:expensesTaxes] = exps[:taxes]
 		incomeStatement[:expensesOther] = exps[:other]
+
+		return incomeStatement
 	end
 
 
