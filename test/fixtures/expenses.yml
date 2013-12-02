@@ -4,12 +4,12 @@ one:
   description: MyText
   dateof: 2013-08-13
   amount: 1.5
-  type: 
+  etype: 
   employee: 
 
 two:
   description: MyText
   dateof: 2013-08-13
   amount: 1.5
-  type: 
+  etype: 
   employee: 
