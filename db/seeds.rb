@@ -1,3 +1,5 @@
+Rake::Task['db:reset'].invoke
+
 addresses = Address.create([
 	{ :number => "123", :street => "Professor St", :neighborhood => "Prof", :zip => 78000 },
 	{ :number => "456", :street => "Other St", :neighborhood => "Other", :zip => 78001, :interior => 1 }
@@ -6,7 +8,7 @@ addresses = Address.create([
 people = Person.create([
 	# students
 	{ :fname => "Student", :lname => "1" , :dob => "1990-01-01" , :sex => "m", :cellr => "(444) 123 4567", :email => "student1@monet.com", :address_id => 2 },
-	{ :fname => "Student", :lname => "2" , :dob => "1991-02-29" , :sex => "f", :cellr => "(444) 123 4567", :email => "student2@monet.com", :address_id => 2 },
+	{ :fname => "Student", :lname => "2" , :dob => "2000-02-29" , :sex => "f", :cellr => "(444) 123 4567", :email => "student2@monet.com", :address_id => 2 },
 	{ :fname => "Student", :lname => "3" , :dob => "1992-03-31" , :sex => "m", :cellr => "(444) 123 4567", :email => "student3@monet.com", :address_id => 2 },
 	{ :fname => "Student", :lname => "4" , :dob => "1994-12-31" , :sex => "f", :cellr => "(444) 123 4567", :email => "student4@monet.com", :address_id => 2 },
 	{ :fname => "Student", :lname => "5" , :dob => "1996-04-24" , :sex => "m", :cellr => "(444) 123 4567", :email => "student5@monet.com", :address_id => 2 },
@@ -39,19 +41,22 @@ Person.find(5).mom = Person.find(15)
 Person.find(6).dad = Person.find(12)
 Person.find(6).mom = Person.find(15)
 
-
-users = User.create([
-  { :username => "l", :utype => 1, :password => "prueba", :person_id => 7 },
-  { :username => "s", :utype => 1, :password => "prueba", :person_id => 8 },
-  { :username => "c", :utype => 0, :password => "prueba", :person_id => 10 }
-])
+u = User.new({ :username => "l", :password => "prueba", :person_id => 7 })
+u.utype = 1
+u.save
+u = User.new({ :username => "s", :password => "prueba", :person_id => 8 })
+u.utype = 1
+u.save
+u = User.new({ :username => "papa1", :password => "prueba", :person_id => 10 })
+u.utype = 0
+u.save
 
 schoolyears = Schoolyear.create([
 	{ :name => "2013-2014", :beginning => "2013-09-01", :end => "2014-06-30", :stdTuition => 100, :stdTuitionSiblings => 80, :state => "Activo", :stdInscription => 100, :stdMaterial => 100, :stdExposition => 100 },
 	{ :name => "2012-2013", :beginning => "2012-09-01", :end => "2013-06-30", :stdTuition => 100, :stdTuitionSiblings => 80, :state => "Cerrado", :stdInscription => 100, :stdMaterial => 100, :stdExposition => 100 }
 ])
 
-students = Student.crete([
+students = Student.create([
 	{ :school => "School", :sInscription => 0, :sMaterial => 0, :sExposition => 0, :sTuition => 0, :sType => "NA", :person_id => 1 },
 	{ :school => "School", :sInscription => 80, :sMaterial => 80, :sExposition => 80, :sTuition => 80, :sType => "Economica", :person_id => 2 },
 	{ :school => "School", :sInscription => 0, :sMaterial => 0, :sExposition => 0, :sTuition => 0, :sType => "NA", :person_id => 3 },
@@ -81,14 +86,14 @@ groups = Group.create([
 ])
 
 g = Group.find(1)
-g.students += Student.find(1)
-g.students += Student.find(2)
-g.students += Student.find(3)
+g.students << Student.find(1)
+g.students << Student.find(2)
+g.students << Student.find(3)
 
 g = Group.find(2)
-g.students += Student.find(4)
-g.students += Student.find(5)
-g.students += Student.find(6)
+g.students << Student.find(4)
+g.students << Student.find(5)
+g.students << Student.find(6)
 
 #employees
 
