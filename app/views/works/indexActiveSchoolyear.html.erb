@@ -14,26 +14,89 @@ end
       <th>Alumno</th>
       <th>Título</th>
       <th>Técnica</th>
+      <th>Edad</th>
       <th></th>
       <th></th>
       <th></th>
     </tr>
   </thead>
  
+<%
+studentWorks = Hash.new
+for work in @works
+  if studentWorks.key?(work.student)
+    studentWorks[work.student] << work
+  else
+    studentWorks[work.student] = [work]
+  end
+end
+%>
+
   <tbody>
-  <% @works.each do |work| %>
-    <tr>
-      <td><%= work.student.name %></td>
-      <td><%= work.title %></td>
-      <td><%= work.technique %></td>
-      <td><%= link_to 'Mostrar', work %></td>
-      <td><%= link_to 'Editar', edit_work_path(work) %></td>
-      <td><%= link_to 'Borrar', work, :confirm => '¿Está seguro que quiere borrar esta obra?', :method => :delete %></td>
-    </tr>
+  <% for student in studentWorks.keys.sort { |a, b| a.name <=> b.name } %>
+    <% for work in studentWorks[student].sort { |a, b| a.technique <=> b.technique } %>
+      <tr>
+        <td><%= work.student.name %></td>
+        <td><%= work.title %></td>
+        <td><%= work.technique %></td>
+        <td><%= work.student.person.age %></td>
+        <td><%= link_to 'Mostrar', work %></td>
+        <td><%= link_to 'Editar', edit_work_path(work) %></td>
+        <td><%= link_to 'Borrar', work, :confirm => '¿Está seguro que quiere borrar esta obra?', :method => :delete %></td>
+      </tr>
+    <% end %>
   <% end %>
   </tbody>
 </table>
  
-<br />
- 
 <%= link_to 'Nueva obra', new_work_path %>
+
+
+
+
+
+
+
+<h1>Separadas por técnica</h1>
+
+<%
+techniqueWorks = Hash.new
+for work in @works
+  if techniqueWorks.key?(work.technique.capitalize)
+    techniqueWorks[work.technique.capitalize] << work
+  else
+    techniqueWorks[work.technique.capitalize] = [work]
+  end
+end
+%>
+
+<% for technique in techniqueWorks.keys.sort %> 
+  <h3><%= technique %></h3>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Alumno</th>
+        <th>Título</th>
+        <th>Técnica</th>
+        <th>Edad</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% for work in techniqueWorks[technique].sort { |a, b| a.student.name <=> b.student.name } %>
+        <tr>
+          <td><%= work.student.name %></td>
+          <td><%= work.title %></td>
+          <td><%= work.technique %></td>
+          <td><%= work.student.person.age %></td>
+          <td><%= link_to 'Mostrar', work %></td>
+          <td><%= link_to 'Editar', edit_work_path(work) %></td>
+          <td><%= link_to 'Borrar', work, :confirm => '¿Está seguro que quiere borrar esta obra?', :method => :delete %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<%end%>

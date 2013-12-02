@@ -47,7 +47,7 @@ class WorksController < ApplicationController
 				flash[:error] = "Sus datos no son válidos."
 			end
 
-			redirect_to(works_path)
+			redirect_to(controller: :works, action: :indexActiveSchoolyear)
 		else
 			flash[:error] = "Acceso restringido."
 			redirect_to(root_path)
